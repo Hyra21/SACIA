@@ -1,5 +1,6 @@
 package com.alucintech.saci;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.android.material.textfield.TextInputEditText;
+
 
 public class InicioFragment extends Fragment {
 
@@ -30,12 +35,31 @@ public class InicioFragment extends Fragment {
         return fragment;
     }
 
+    TextInputEditText Correo , Contrasena;
+    Button IniSesion;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            Correo=(TextInputEditText) Correo.findViewById(R.id.textInputCorreo);
+            Contrasena=(TextInputEditText) Contrasena.findViewById(R.id.textInputContrasena);
+
+            IniSesion=(Button) IniSesion.findViewById(R.id.buttonInicioSesion);
+
+            IniSesion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new Task().execute();
+                }
+            });
+        }
+
+        class Task extends AsyncTask<Void, Void, Void>{
+
         }
     }
 
