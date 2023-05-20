@@ -1,6 +1,7 @@
 package com.alucintech.saci;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -51,6 +52,8 @@ public class InicioFragment extends Fragment {
                         CorreoEncontrado = true;
                         if(resultSet.getString(2).equals(ContrasenaS)){
                             ContraEncontrada = true;
+                            //Llamada del metodo para guardar las credenciales en la aplicacion
+                            guardarPreferencias();
                             return null;
                         }
                     }
@@ -95,30 +98,63 @@ public class InicioFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if(cargarPreferencias()!=true){
+            IniSesion = view.findViewById(R.id.buttonInicioSesion);
+            Correo = view.findViewById(R.id.textInputCorreo);
+            Contrasena = view.findViewById(R.id.textInputContrasena);
 
-        IniSesion = view.findViewById(R.id.buttonInicioSesion);
-        Correo = view.findViewById(R.id.textInputCorreo);
-        Contrasena = view.findViewById(R.id.textInputContrasena);
 
+            IniSesion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Correo.getText().toString().isEmpty()) {
+                        Toast.makeText(getContext(),"Debes ingresar un correo",Toast.LENGTH_LONG).show();
+                    }
+                    if (Contrasena.getText().toString().isEmpty()) {
+                        Toast.makeText(getActivity(),"Debes ingresar una contrasenia",Toast.LENGTH_LONG).show();
+                    } else {
+                        //Aqui almacenamos view obtenido en el onCreateView() para luego utilizarlo en el navController
+                        viewNav = view;
+                        new Task().execute();
 
-        IniSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Correo.getText().toString().isEmpty()) {
-                    Toast.makeText(getContext(),"Debes ingresar un correo",Toast.LENGTH_LONG).show();
+                    }
+
                 }
-                if (Contrasena.getText().toString().isEmpty()) {
-                    Toast.makeText(getActivity(),"Debes ingresar una contrasenia",Toast.LENGTH_LONG).show();
-                } else {
-                    //Aqui almacenamos view obtenido en el onCreateView() para luego utilizarlo en el navController
-                    viewNav = view;
-                    new Task().execute();
-
-                }
-
-            }
-        });
+            });
+        }else{
+            navController = Navigation.findNavController(view);
+            navController.navigate(R.id.action_inicioFragment_to_alumnoFragment);
+        }
 
 
+
+    }
+    //Creacion del archivo para almacenar credenciales
+    private void guardarPreferencias(){
+        //Linea de codigo para crear el archivo credencialesAlumno.xml
+        SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno",Context.MODE_PRIVATE);
+        //Aqui almacenamos las credenciales obtenidas de los inputText de correo y contrasena en distintos Strings
+        String usuario = Correo.getText().toString();
+        String contrasena = Contrasena.getText().toString();
+        //Aqui editamos el archivo creado y le agregamos los datos
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user", usuario);
+        editor.putString("password", contrasena);
+        //Con este commit terminamos de almacenar el archivo en el sistema
+        editor.commit();
+    }
+    //Lectura del archivo para obtener las credenciales almacenadas
+    private boolean cargarPreferencias(){
+        String flag = "No existe";
+        //Linea de codigo para buscar el archivo credencialesAlumno.xml
+        SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno",Context.MODE_PRIVATE);
+        //Aqui obtenemos las credenciales almacenadas, si no existen se guarda "No existe"
+        String usuario = preferences.getString("user","No existe");
+        String contrasena = preferences.getString("password","No existe");
+        //Aqui se realiza la validacion de que existen las credenciales
+        if(usuario.equals(flag) || contrasena.equals(flag)){
+            return false;
+        }
+        return true;
     }
 }
