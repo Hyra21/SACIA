@@ -9,5 +9,19 @@
         android:id="@+id/inicioFragment"
         android:name="com.alucintech.saci.InicioFragment"
         android:label="fragment_inicio"
-        tools:layout="@layout/fragment_inicio" />
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicioFragment_to_alumnoFragment"
+            app:destination="@id/alumnoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/alumnoFragment"
+        android:name="com.alucintech.saci.AlumnoFragment"
+        android:label="fragment_alumno"
+        tools:layout="@layout/fragment_alumno" />
+    <fragment
+        android:id="@+id/carnetFragment"
+        android:name="com.alucintech.saci.CarnetFragment"
+        android:label="fragment_carnet"
+        tools:layout="@layout/fragment_carnet" />
 </navigation>

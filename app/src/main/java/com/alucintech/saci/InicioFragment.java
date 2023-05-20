@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +24,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
-
 public class InicioFragment extends Fragment {
     TextInputEditText Correo , Contrasena;
     Button IniSesion;
     TextView text;
     Boolean CorreoEncontrado=false, ContraEncontrada=false;
+    NavController navController;
+    View viewNav;
 
     class Task extends AsyncTask<Void, Void, Void>{
         String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString(), error="";
@@ -39,7 +41,7 @@ public class InicioFragment extends Fragment {
             try {
                 //Conexion con la base de datos y obtencion de los datos
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd","HYRA99","root");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd","root","root");
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT correo, contrasenaUsuario FROM usuarios");
 
@@ -63,6 +65,7 @@ public class InicioFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void unused) {
+
             //Mensajes por si el correo o la contraseña son incorrectos
             if(CorreoEncontrado==false){
                 Toast.makeText(getActivity(),"Correo incorrecto o no existe",Toast.LENGTH_LONG).show();
@@ -71,6 +74,12 @@ public class InicioFragment extends Fragment {
             if(ContraEncontrada==false){
                 Toast.makeText(getActivity(),"Contraseña incorrecta",Toast.LENGTH_LONG).show();
                 ContraEncontrada = false;
+            }else{
+                Correo.setText("");
+                Contrasena.setText("");
+                //Aqui realizamos la navegacion hacia la siguiente pantalla
+                navController = Navigation.findNavController(viewNav);
+                navController.navigate(R.id.action_inicioFragment_to_alumnoFragment);
             }
             super.onPostExecute(unused);
         }
@@ -101,10 +110,15 @@ public class InicioFragment extends Fragment {
                 if (Contrasena.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(),"Debes ingresar una contrasenia",Toast.LENGTH_LONG).show();
                 } else {
+                    //Aqui almacenamos view obtenido en el onCreateView() para luego utilizarlo en el navController
+                    viewNav = view;
                     new Task().execute();
+
                 }
 
             }
         });
+
+
     }
 }
