@@ -45,17 +45,16 @@ public class InicioFragment extends Fragment {
             try {
                 //Conexion con la base de datos y obtencion de los datos
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd","root","root");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "root", "root");
                 Statement statement = connection.createStatement();
 
                 //Query para  obtener la tabla de usuarios
                 ResultSet resultSet = statement.executeQuery("SELECT correo, nombreUsuario, apellidoMaternoUsuario, apellidoPaternoUsuario, contrasenaUsuario, tipoUsuario FROM usuarios");
-
-                while(resultSet.next()){
-                    if(resultSet.getString(6).equals("Alumno")){
-                        if(resultSet.getString(1).equals(CorreoS) ){
+                while (resultSet.next()) {
+                    if (resultSet.getString(6).equals("Alumno")) {
+                        if (resultSet.getString(1).equals(CorreoS)) {
                             CorreoEncontrado = true;
-                            if(resultSet.getString(5).equals(ContrasenaS)){
+                            if (resultSet.getString(5).equals(ContrasenaS)) {
                                 nombreAlumno = resultSet.getString(2);
                                 apellidoMAlumno = resultSet.getString(3);
                                 apellidoPAlumno = resultSet.getString(4);
@@ -65,37 +64,37 @@ public class InicioFragment extends Fragment {
                     }
                 }
 
-                if(ContraEncontrada == true){
+                if (ContraEncontrada == true) {
                     //Query para obtener las tabla que identifican a alumno
                     ResultSet identificaAlumno = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
                     //Validacion de credenciales
 
-                    while(identificaAlumno.next()){
-                        if(identificaAlumno.getString(2).equals(CorreoS)){
+                    while (identificaAlumno.next()) {
+                        if (identificaAlumno.getString(2).equals(CorreoS)) {
                             Matricula = identificaAlumno.getString(1);
                         }
                     }
 
-
-
+                    ResultSet Alumno = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
+                    while (Alumno.next()) {
+                        if (Alumno.getString(1).equals(Matricula)) {
+                            codigoPrograma = Alumno.getString(2);
+                            guardarPreferencias();
+                        }
+                    }
 
                     ResultSet programaEducativo = statement.executeQuery("SELECT codigoProgramaEducativo, nombreProgramaEducativo FROM programaEducativo");
-                    while (programaEducativo.next()){
-                        if(programaEducativo.getString(1).equals(codigoPrograma)){
+                    while (programaEducativo.next()) {
+                        if (programaEducativo.getString(1).equals(codigoPrograma)) {
                             nomPrograma = programaEducativo.getString(2);
                             guardarPreferencias();
                         }
                     }
 
+
                 }
 
-                ResultSet Alumno = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
-                while(Alumno.next()){
-                    if(Alumno.getString(1).equals(Matricula)){
-                        codigoPrograma = resultSet.getString(2);
-                        guardarPreferencias();
-                    }
-                }
+
 
             } catch (Exception e){
                 error = e.toString();
