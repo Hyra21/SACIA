@@ -32,32 +32,45 @@ public class InicioFragment extends Fragment {
     Boolean CorreoEncontrado=false, ContraEncontrada=false;
     NavController navController;
     View viewNav;
+    String Matricula="";
 
     class Task extends AsyncTask<Void, Void, Void>{
         String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString(), error="";
 
-
         @Override
         protected Void doInBackground(Void... voids) {
+
             try {
                 //Conexion con la base de datos y obtencion de los datos
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd","root","root");
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT correo, contrasenaUsuario FROM usuarios");
 
-                //Busqueda de credenciales
+                //Query para  obtener la tabla de usuarios
+                ResultSet resultSet = statement.executeQuery("SELECT correo, contrasenaUsuario, tipoUsuario FROM usuarios");
+
                 while(resultSet.next()){
-                    if(resultSet.getString(1).equals(CorreoS) ){
-                        CorreoEncontrado = true;
-                        if(resultSet.getString(2).equals(ContrasenaS)){
-                            ContraEncontrada = true;
-                            //Llamada del metodo para guardar las credenciales en la aplicacion
+                    if(resultSet.getString(3).equals("Alumno")){
+                        if(resultSet.getString(1).equals(CorreoS) ){
+                            CorreoEncontrado = true;
+                            if(resultSet.getString(2).equals(ContrasenaS)){
+                                ContraEncontrada = true;
+                            }
+                        }
+                    }
+                }
+
+                //Query para obtener las tabla que identifican a alumno
+                ResultSet identificaAlumno = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
+                //Validacion de credenciales
+
+                if(ContraEncontrada == true){
+                    while(identificaAlumno.next()){
+                        if(identificaAlumno.getString(2).equals(CorreoS)){
                             guardarPreferencias();
                             return null;
                         }
                     }
-
                 }
 
             } catch (Exception e){
@@ -71,7 +84,7 @@ public class InicioFragment extends Fragment {
 
             //Mensajes por si el correo o la contraseña son incorrectos
             if(CorreoEncontrado==false){
-                Toast.makeText(getActivity(),"Correo incorrecto o no existe",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Correo no existe",Toast.LENGTH_LONG).show();
                 CorreoEncontrado = false;
             }
             if(ContraEncontrada==false){
@@ -131,26 +144,34 @@ public class InicioFragment extends Fragment {
     }
     //Creacion del archivo para almacenar credenciales
     private void guardarPreferencias(){
+
         //Linea de codigo para crear el archivo credencialesAlumno.xml
         SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno",Context.MODE_PRIVATE);
+
         //Aqui almacenamos las credenciales obtenidas de los inputText de correo y contrasena en distintos Strings
         String usuario = Correo.getText().toString();
         String contrasena = Contrasena.getText().toString();
+
         //Aqui editamos el archivo creado y le agregamos los datos
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user", usuario);
         editor.putString("password", contrasena);
+        editor.putString("matricula", Matricula);
+
         //Con este commit terminamos de almacenar el archivo en el sistema
         editor.commit();
     }
     //Lectura del archivo para obtener las credenciales almacenadas
     private boolean cargarPreferencias(){
         String flag = "No existe";
+
         //Linea de codigo para buscar el archivo credencialesAlumno.xml
         SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno",Context.MODE_PRIVATE);
+
         //Aqui obtenemos las credenciales almacenadas, si no existen se guarda "No existe"
         String usuario = preferences.getString("user","No existe");
         String contrasena = preferences.getString("password","No existe");
+
         //Aqui se realiza la validacion de que existen las credenciales
         if(usuario.equals(flag) || contrasena.equals(flag)){
             return false;
