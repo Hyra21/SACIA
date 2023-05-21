@@ -8,16 +8,123 @@
     tools:context=".AlumnoFragment">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgViewBanner"
         android:layout_width="0dp"
         android:layout_height="537dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="218dp"
+        android:layout_marginBottom="220dp"
         android:src="@drawable/flyer"
-        android:elevation="30dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/twBienvenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="91dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/allerta"
+        android:text="Bienvenido Estudiante"
+        android:textColor="#070000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/twNombreAlumno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/allerta"
+        android:text="Nombre Completo del Alumno"
+        android:textColor="#070000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/twBienvenido"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/twPrograma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:fontFamily="@font/allerta"
+        android:text="Programa Educativo"
+        android:textColor="#070000"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/twNombrePrograma"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/twNombreAlumno"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <TextView
+        android:id="@+id/twNombrePrograma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="Nombre de Programa Educativo"
+        android:textColor="#070000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.286"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.288" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_redondo"
+        android:clickable="true"
+        android:contentDescription="Menu de opciones para el alumno"
+        android:src="@drawable/baseline_menu_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/twBienvenido"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/btnCarnets"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="65dp"
+        android:background="@drawable/btn_carnet"
+        android:text="Carnets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnActividades"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71" />
+
+    <Button
+        android:id="@+id/btnActividades"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/btn_carnet"
+        android:text="Actividades"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCarnets"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

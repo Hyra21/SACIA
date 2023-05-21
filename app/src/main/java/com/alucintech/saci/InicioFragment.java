@@ -32,7 +32,8 @@ public class InicioFragment extends Fragment {
     Boolean CorreoEncontrado=false, ContraEncontrada=false;
     NavController navController;
     View viewNav;
-    String Matricula="";
+    String Matricula="", codigoPrograma="", nomPrograma="";
+    String nombreAlumno="", apellidoMAlumno="", apellidoPAlumno="";
 
     class Task extends AsyncTask<Void, Void, Void>{
         String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString(), error="";
@@ -40,6 +41,7 @@ public class InicioFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
+            boolean e1 = false, e2 = false;
             try {
                 //Conexion con la base de datos y obtencion de los datos
                 Class.forName("com.mysql.jdbc.Driver");
@@ -47,29 +49,51 @@ public class InicioFragment extends Fragment {
                 Statement statement = connection.createStatement();
 
                 //Query para  obtener la tabla de usuarios
-                ResultSet resultSet = statement.executeQuery("SELECT correo, contrasenaUsuario, tipoUsuario FROM usuarios");
+                ResultSet resultSet = statement.executeQuery("SELECT correo, nombreUsuario, apellidoMaternoUsuario, apellidoPaternoUsuario, contrasenaUsuario, tipoUsuario FROM usuarios");
 
                 while(resultSet.next()){
-                    if(resultSet.getString(3).equals("Alumno")){
+                    if(resultSet.getString(6).equals("Alumno")){
                         if(resultSet.getString(1).equals(CorreoS) ){
                             CorreoEncontrado = true;
-                            if(resultSet.getString(2).equals(ContrasenaS)){
+                            if(resultSet.getString(5).equals(ContrasenaS)){
+                                nombreAlumno = resultSet.getString(2);
+                                apellidoMAlumno = resultSet.getString(3);
+                                apellidoPAlumno = resultSet.getString(4);
                                 ContraEncontrada = true;
                             }
                         }
                     }
                 }
 
-                //Query para obtener las tabla que identifican a alumno
-                ResultSet identificaAlumno = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
-                //Validacion de credenciales
-
                 if(ContraEncontrada == true){
+                    //Query para obtener las tabla que identifican a alumno
+                    ResultSet identificaAlumno = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
+                    //Validacion de credenciales
+
                     while(identificaAlumno.next()){
                         if(identificaAlumno.getString(2).equals(CorreoS)){
-                            guardarPreferencias();
-                            return null;
+                            Matricula = identificaAlumno.getString(1);
                         }
+                    }
+
+
+
+
+                    ResultSet programaEducativo = statement.executeQuery("SELECT codigoProgramaEducativo, nombreProgramaEducativo FROM programaEducativo");
+                    while (programaEducativo.next()){
+                        if(programaEducativo.getString(1).equals(codigoPrograma)){
+                            nomPrograma = programaEducativo.getString(2);
+                            guardarPreferencias();
+                        }
+                    }
+
+                }
+
+                ResultSet Alumno = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
+                while(Alumno.next()){
+                    if(Alumno.getString(1).equals(Matricula)){
+                        codigoPrograma = resultSet.getString(2);
+                        guardarPreferencias();
                     }
                 }
 
@@ -157,6 +181,10 @@ public class InicioFragment extends Fragment {
         editor.putString("user", usuario);
         editor.putString("password", contrasena);
         editor.putString("matricula", Matricula);
+        editor.putString("programaEducativo", nomPrograma);
+        editor.putString("nombre", nombreAlumno);
+        editor.putString("apellidoMaterno", apellidoMAlumno);
+        editor.putString("apellidoPaterno", apellidoPAlumno);
 
         //Con este commit terminamos de almacenar el archivo en el sistema
         editor.commit();

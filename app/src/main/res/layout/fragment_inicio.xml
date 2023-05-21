@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C3C1AF"
+    android:background="#71716F"
     tools:context=".InicioFragment">
 
     <Button
@@ -15,7 +15,6 @@
         android:layout_marginBottom="16dp"
         android:width="300dp"
         android:background="@drawable/btn_inicio"
-        android:backgroundTint="@color/green_uabc"
         android:text="Iniciar Sesión"
         android:textColor="@drawable/txt_btn_inicio"
         app:layout_constraintBottom_toBottomOf="parent"
