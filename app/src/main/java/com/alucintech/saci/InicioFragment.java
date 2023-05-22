@@ -45,7 +45,7 @@ public class InicioFragment extends Fragment {
             try {
                 //Conexion con la base de datos y obtencion de los datos
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "root", "root");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.72:3307/sacibd", "HYRA99", "root");
                 Statement statement = connection.createStatement();
 
                 //Query para  obtener la tabla de usuarios

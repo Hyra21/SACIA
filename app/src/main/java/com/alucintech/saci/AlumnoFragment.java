@@ -10,10 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Connection;
@@ -24,7 +27,9 @@ import java.sql.Statement;
 public class AlumnoFragment extends Fragment {
 
     TextView nombreAlumno, nombrePrograma;
+    Button btnCarnets;
     String matricula="", nomAlumno="", nomPrograma="", apeMaterno="", apePaterno="";
+    NavController navigation;
 
 
     class Task extends AsyncTask<Void, Void, Void>{
@@ -62,6 +67,15 @@ public class AlumnoFragment extends Fragment {
         nombreAlumno.setText(nombreCompleto);
         nombrePrograma.setText(nomPrograma);
 
+        btnCarnets = view.findViewById(R.id.btnCarnets);
+
+        btnCarnets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigation = Navigation.findNavController(view);
+                navigation.navigate(R.id.action_alumnoFragment_to_consultaCarnet);
+            }
+        });
     }
 
     private void cargarPreferencias(){
