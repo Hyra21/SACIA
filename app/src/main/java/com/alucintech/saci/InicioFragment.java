@@ -66,36 +66,34 @@ public class InicioFragment extends Fragment {
 
                 if (ContraEncontrada == true) {
                     //Query para obtener las tabla que identifican a alumno
-                    ResultSet identificaAlumno = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
+                    resultSet = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
                     //Validacion de credenciales
 
-                    while (identificaAlumno.next()) {
-                        if (identificaAlumno.getString(2).equals(CorreoS)) {
-                            Matricula = identificaAlumno.getString(1);
+                    while (resultSet.next()) {
+                        if (resultSet.getString(2).equals(CorreoS)) {
+                            Matricula = resultSet.getString(1);
                         }
                     }
 
-                    ResultSet Alumno = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
-                    while (Alumno.next()) {
-                        if (Alumno.getString(1).equals(Matricula)) {
-                            codigoPrograma = Alumno.getString(2);
+                    resultSet = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
+                    while (resultSet.next()) {
+                        if (resultSet.getString(1).equals(Matricula)) {
+                            codigoPrograma = resultSet.getString(2);
                             guardarPreferencias();
                         }
                     }
 
-                    ResultSet programaEducativo = statement.executeQuery("SELECT codigoProgramaEducativo, nombreProgramaEducativo FROM programaEducativo");
-                    while (programaEducativo.next()) {
-                        if (programaEducativo.getString(1).equals(codigoPrograma)) {
-                            nomPrograma = programaEducativo.getString(2);
+                    resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, nombreProgramaEducativo FROM programaEducativo");
+                    while (resultSet.next()) {
+                        if (resultSet.getString(1).equals(codigoPrograma)) {
+                            nomPrograma = resultSet.getString(2);
                             guardarPreferencias();
                         }
                     }
 
 
                 }
-
-
-
+                connection.close();
             } catch (Exception e){
                 error = e.toString();
             }
