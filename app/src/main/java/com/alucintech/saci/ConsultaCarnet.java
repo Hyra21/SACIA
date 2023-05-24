@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -19,17 +21,27 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 
+import com.alucintech.saci.fragments.CarnetFragment;
+import com.alucintech.saci.fragments.carnetFragment2;
+import com.alucintech.saci.fragments.carnetFragment3;
+import com.alucintech.saci.fragments.carnetFragment4;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsultaCarnet extends Fragment {
 
+    private ViewPager pager;
+    private PagerAdapter pagerAdapter;
     int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
     String matriculaAlumno="", carnetsCompletos="", estadoCarnet="";
     ImageButton btnRegresar, btnScanner;
     NavController navController;
+    View vista;
 
     class Task extends AsyncTask<View, View, View>{
         //Aquí subimos todos los datos a la base de datos
@@ -64,6 +76,18 @@ public class ConsultaCarnet extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);
+
+
+        List<Fragment> list = new ArrayList<>();
+        list.add(new CarnetFragment());
+        list.add(new carnetFragment2());
+        list.add(new carnetFragment3());
+        list.add(new carnetFragment4());
+
+        pager = view.findViewById(R.id.vpCarnets);
+        pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager(),list);
+        pager.setAdapter(pagerAdapter);
+
         cargarPreferencias();
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,14 +192,6 @@ public class ConsultaCarnet extends Fragment {
             statement.executeUpdate("UPDATE alumno set numcarnetSemestre = '" + numCarnetSemestre + "' WHERE matriculaAlumno = '" + matriculaAlumno + "'");
             connection.close();
         }catch (Exception e){
-
-        }
-    }
-
-    public void actualizarCarnetSemestre(){
-        try{
-
-        } catch (Exception e){
 
         }
     }

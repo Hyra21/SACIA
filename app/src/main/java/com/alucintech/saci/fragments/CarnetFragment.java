@@ -1,4 +1,4 @@
-package com.alucintech.saci;
+package com.alucintech.saci.fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.alucintech.saci.R;
+
 
 public class CarnetFragment extends Fragment {
 
@@ -21,7 +23,9 @@ public class CarnetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carnet, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_carnet, container, false);
+
+        return rootView;
     }
 
     @Override

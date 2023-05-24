@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/carnetFragment"
-        android:name="com.alucintech.saci.CarnetFragment"
+        android:name="com.alucintech.saci.fragments.CarnetFragment"
         android:label="fragment_carnet"
         tools:layout="@layout/fragment_carnet" />
     <fragment
@@ -73,4 +73,19 @@
             android:id="@+id/action_onboardingFragment2_to_inicioFragment"
             app:destination="@id/inicioFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/carnetFragment2"
+        android:name="com.alucintech.saci.fragments.carnetFragment2"
+        android:label="fragment_carnet2"
+        tools:layout="@layout/fragment_carnet2" />
+    <fragment
+        android:id="@+id/carnetFragment3"
+        android:name="com.alucintech.saci.fragments.carnetFragment3"
+        android:label="fragment_carnet3"
+        tools:layout="@layout/fragment_carnet3" />
+    <fragment
+        android:id="@+id/carnetFragment4"
+        android:name="com.alucintech.saci.fragments.carnetFragment4"
+        android:label="fragment_carnet4"
+        tools:layout="@layout/fragment_carnet4" />
 </navigation>
