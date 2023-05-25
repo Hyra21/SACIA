@@ -41,6 +41,7 @@ public class ConsultaCarnet extends Fragment {
     String matriculaAlumno="", carnetsCompletos="", estadoCarnet="";
     ImageButton btnRegresar, btnScanner;
     NavController navController;
+    List<Fragment> list = new ArrayList<>();
     View vista;
 
     class Task extends AsyncTask<View, View, View>{
@@ -76,17 +77,7 @@ public class ConsultaCarnet extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);
-
-
-        List<Fragment> list = new ArrayList<>();
-        list.add(new CarnetFragment());
-        list.add(new carnetFragment2());
-        list.add(new carnetFragment3());
-        list.add(new carnetFragment4());
-
-        pager = view.findViewById(R.id.vpCarnets);
-        pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager(),list);
-        pager.setAdapter(pagerAdapter);
+        vista = view;
 
         cargarPreferencias();
         btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +185,14 @@ public class ConsultaCarnet extends Fragment {
         }catch (Exception e){
 
         }
+    }
+
+    public void mostrarCarnet(){
+        list.add(new CarnetFragment());
+
+            pager = vista.findViewById(R.id.vpCarnets);
+        pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager(),list);
+        pager.setAdapter(pagerAdapter);
     }
 
 }

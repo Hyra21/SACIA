@@ -10,18 +10,13 @@ import android.view.ViewGroup;
 
 import com.alucintech.saci.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link carnetFragment3#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class carnetFragment3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_carnet3, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_carnet, container, false);
 
         return rootView;
     }

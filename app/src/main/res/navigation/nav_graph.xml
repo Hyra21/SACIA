@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/onboardingFragment1">
+    app:startDestination="@id/inicioFragment">
 
     <fragment
         android:id="@+id/inicioFragment"
@@ -51,27 +51,6 @@
         <action
             android:id="@+id/action_consultaEvento_to_alumnoFragment"
             app:destination="@id/alumnoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/onboardingFragment1"
-        android:name="com.alucintech.saci.onboardingFragment1"
-        android:label="fragment_onboarding1"
-        tools:layout="@layout/fragment_onboarding1" >
-        <action
-            android:id="@+id/action_onboardingFragment1_to_onboardingFragment2"
-            app:destination="@id/onboardingFragment2" />
-        <action
-            android:id="@+id/action_onboardingFragment1_to_inicioFragment"
-            app:destination="@id/inicioFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/onboardingFragment2"
-        android:name="com.alucintech.saci.onboardingFragment2"
-        android:label="fragment_onboarding2"
-        tools:layout="@layout/fragment_onboarding2" >
-        <action
-            android:id="@+id/action_onboardingFragment2_to_inicioFragment"
-            app:destination="@id/inicioFragment" />
     </fragment>
     <fragment
         android:id="@+id/carnetFragment2"
