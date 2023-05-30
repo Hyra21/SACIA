@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
@@ -10,135 +9,14 @@
     android:adjustViewBounds="true"
     tools:context=".fragments.CarnetFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="278dp"
-        android:layout_height="480dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnCarnet"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="28dp"
-            android:background="@drawable/imgbt_carnet"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/btnSello1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/imgbt_sellos"
-            android:contentDescription="@string/btnSellos"
-            app:layout_constraintBottom_toTopOf="@+id/btnsello3"
-            app:layout_constraintEnd_toStartOf="@+id/btnsello2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnsello2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="55dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toTopOf="@+id/btnsello4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnSello1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnsello3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toTopOf="@+id/btnsello5"
-            app:layout_constraintEnd_toStartOf="@+id/btnsello4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSello1" />
-
-        <Button
-            android:id="@+id/btnsello4"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="55dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toTopOf="@+id/btnsello6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnsello3"
-            app:layout_constraintTop_toBottomOf="@+id/btnsello2" />
-
-        <Button
-            android:id="@+id/btnsello5"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toTopOf="@+id/btnsello7"
-            app:layout_constraintEnd_toStartOf="@+id/btnsello6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnsello3" />
-
-        <Button
-            android:id="@+id/btnsello6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="55dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toTopOf="@+id/btnsello8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnsello5"
-            app:layout_constraintTop_toBottomOf="@+id/btnsello4" />
-
-        <Button
-            android:id="@+id/btnsello7"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="75dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnsello8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnsello5" />
-
-        <Button
-            android:id="@+id/btnsello8"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="55dp"
-            android:layout_marginBottom="75dp"
-            android:background="@drawable/imgbt_sellos"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnsello7"
-            app:layout_constraintTop_toBottomOf="@+id/btnsello6" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -16,5 +16,12 @@
 
     <string name="btnSellos">Boton para sellos</string>
 
+    <string name="Logout">Cerrar Sesión</string>
+    <string name="settings">Configuración</string>
+    <string name="contactHelp">Contactar Soporte</string>
+    <string name="help">Ayuda</string>
+
+    <string name="contexto">Sin contexto</string>
+
 
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintCarnet"
@@ -8,64 +8,74 @@
     android:background="#50B848"
     tools:context=".ConsultaCarnet">
 
-    <ImageButton
-        android:id="@+id/imgbtMenu"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="576dp"
-        android:background="@drawable/btn_redondo"
-        android:clickable="true"
-        android:contentDescription="Menu de opciones para el alumno"
-        android:src="@drawable/baseline_menu_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imgbtRegresar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="195dp"
-        android:background="@drawable/btn_redondo"
-        android:clickable="true"
-        android:contentDescription="Regresar a la pantalla anterior"
-        android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.922" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/imgbtScanner"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_scanner"
-        android:clickable="true"
-        android:contentDescription="Scanear carnet"
-        android:src="@drawable/baseline_qr_code_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.874"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.922" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/green_uabc"
+                app:navigationIcon="@drawable/baseline_menu_24">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vpCarnets"
-        android:layout_width="409dp"
-        android:layout_height="498dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369">
+            </com.google.android.material.appbar.MaterialToolbar>
 
-    </androidx.viewpager.widget.ViewPager>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageButton
+            android:id="@+id/imgbtRegresar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="195dp"
+            android:background="@drawable/btn_redondo"
+            android:clickable="true"
+            android:contentDescription="Regresar a la pantalla anterior"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.955" />
+
+        <ImageButton
+            android:id="@+id/imgbtScanner"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_scanner"
+            android:clickable="true"
+            android:contentDescription="Scanear carnet"
+            android:src="@drawable/baseline_qr_code_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.868"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.955" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rwCarnet"
+            android:layout_width="410dp"
+            android:layout_height="574dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"></androidx.recyclerview.widget.RecyclerView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

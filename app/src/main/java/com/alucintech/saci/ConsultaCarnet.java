@@ -32,6 +32,7 @@ import java.util.List;
 
 public class ConsultaCarnet extends Fragment {
 
+    ArrayList<Carnet> carnet = new ArrayList<>();
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
     int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0, numSellos=0;
@@ -98,6 +99,35 @@ public class ConsultaCarnet extends Fragment {
         });
 
         new Task().execute();
+    }
+
+    private void setUpCarnets(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT numFolio, numeroSellosCarnet, cicloEscolar, fechaCreacionCarnet, matriculaAlumno, estadoCarnet, codigoCarnet FROM alumno");
+
+            while (resultSet.next()){
+                if(resultSet.getString(5).equals(matriculaAlumno)){
+
+                    int folio = resultSet.getInt(1);
+                    int sellos = resultSet.getInt(2);
+                    String ciclo = resultSet.getString(3);
+                    String fechaC = resultSet.getString(4);
+                    int matricula = resultSet.getInt(5);
+                    String estado = resultSet.getString(6);
+                    int clave = resultSet.getInt(7);
+
+                    carnet.add(new Carnet(folio,sellos,ciclo,fechaC,matricula,estado,clave));
+                }
+            }
+
+        } catch (Exception e){
+
+        }
+
+        for(int i = 0;)
     }
 
     public void guardarPreferencias(){
