@@ -22,9 +22,6 @@ import android.widget.ImageButton;
 
 
 import com.alucintech.saci.fragments.CarnetFragment;
-import com.alucintech.saci.fragments.carnetFragment2;
-import com.alucintech.saci.fragments.carnetFragment3;
-import com.alucintech.saci.fragments.carnetFragment4;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -37,8 +34,8 @@ public class ConsultaCarnet extends Fragment {
 
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
-    int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
-    String matriculaAlumno="", carnetsCompletos="", estadoCarnet="";
+    int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0, numSellos=0;
+    String matriculaAlumno="", carnetsCompletos="", estadoCarnet="", cicloEscolar="", fechaCreacion="";
     ImageButton btnRegresar, btnScanner;
     NavController navController;
     List<Fragment> list = new ArrayList<>();
@@ -58,13 +55,18 @@ public class ConsultaCarnet extends Fragment {
                     generarCarnet();
                 }
             }
+
             return null;
         }
         //Aquí crearemos la vista de los carnets del alumno
         @Override
         protected void onPostExecute(View view) {
+
             super.onPostExecute(view);
+
+            mostrarCarnet();
         }
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,12 +99,15 @@ public class ConsultaCarnet extends Fragment {
 
         new Task().execute();
     }
+
     public void guardarPreferencias(){
         SharedPreferences preferences = getActivity().getSharedPreferences("crendencialesAlumno", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("carnetsCompletos", "Si");
         editor.commit();
     }
+
+    //Metodo para obtener los datos del alumno matricula y carnets completos del archivo shared preferences "credencialesAlumno"
     public void cargarPreferencias(){
         SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno", Context.MODE_PRIVATE);
 
@@ -115,6 +120,7 @@ public class ConsultaCarnet extends Fragment {
         startActivity(intent);
     }
 
+    //Metodo para obtener los carnets del semestre actual y los carnets de toda la carrera del alumno
     public void carnetsActuales(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -135,6 +141,7 @@ public class ConsultaCarnet extends Fragment {
 
     }
 
+    //Metodo para obtener el ultimo folio generado y generar uno nuevo para el carnet
     public void folioActual(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -151,6 +158,7 @@ public class ConsultaCarnet extends Fragment {
         }
     }
 
+    //Metodo para obtener el ultimo carnet generado del alumno
     public void carnetActual(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -170,6 +178,7 @@ public class ConsultaCarnet extends Fragment {
         }
     }
 
+    //Metodo para generar y almacenar carnets en la base de datos
     public void generarCarnet(){
         try{
             folioActual();
@@ -187,12 +196,36 @@ public class ConsultaCarnet extends Fragment {
         }
     }
 
-    public void mostrarCarnet(){
-        list.add(new CarnetFragment());
+    public void buscarCarnet(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT numFolio, numeroSellosCarnet, cicloEscolarCarnet, fechaCreacionCarnet, matriculaAlumno, estadoCarnet, codigoCarnet FROM carnet");
 
-            pager = vista.findViewById(R.id.vpCarnets);
-        pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager(),list);
-        pager.setAdapter(pagerAdapter);
+            while(resultSet.next()){
+                if(resultSet.getString(5).equals(matriculaAlumno)){
+                    folioActual = resultSet.getInt(1);
+                    numSellos = resultSet.getInt(2);
+                    cicloEscolar = resultSet.getString(3);
+                    fechaCreacion = resultSet.getString(4);
+                    estadoCarnet = resultSet.getString(6);
+                    claveCarnet = resultSet.getInt(7);
+                }
+            }
+            connection.close();
+        }catch (Exception e){
+
+        }
     }
 
+    //Metodo para agregar carnet al view pager de los carnets
+    public void mostrarCarnet() {
+        buscarCarnet();
+        list.add(new CarnetFragment());
+
+        pager = vista.findViewById(R.id.vpCarnets);
+        pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager(), list);
+        pager.setAdapter(pagerAdapter);
+    }
 }

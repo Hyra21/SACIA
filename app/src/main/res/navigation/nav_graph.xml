@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_consultaCarnet_to_alumnoFragment"
             app:destination="@id/alumnoFragment" />
+        <action
+            android:id="@+id/action_consultaCarnet_to_informacionCarnetFragment"
+            app:destination="@id/informacionCarnetFragment" />
     </fragment>
     <fragment
         android:id="@+id/consultaEvento"
@@ -58,13 +61,12 @@
         android:label="fragment_carnet2"
         tools:layout="@layout/fragment_carnet2" />
     <fragment
-        android:id="@+id/carnetFragment3"
-        android:name="com.alucintech.saci.fragments.carnetFragment3"
-        android:label="fragment_carnet3"
-        tools:layout="@layout/fragment_carnet3" />
-    <fragment
-        android:id="@+id/carnetFragment4"
-        android:name="com.alucintech.saci.fragments.carnetFragment4"
-        android:label="fragment_carnet4"
-        tools:layout="@layout/fragment_carnet4" />
+        android:id="@+id/informacionCarnetFragment"
+        android:name="com.alucintech.saci.InformacionCarnetFragment"
+        android:label="fragment_informacion_carnet"
+        tools:layout="@layout/fragment_informacion_carnet" >
+        <action
+            android:id="@+id/action_informacionCarnetFragment_to_consultaCarnet"
+            app:destination="@id/consultaCarnet" />
+    </fragment>
 </navigation>

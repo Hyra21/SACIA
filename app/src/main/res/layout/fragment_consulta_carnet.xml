@@ -56,14 +56,16 @@
         app:layout_constraintVertical_bias="0.922" />
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpCarnets"
         android:layout_width="409dp"
         android:layout_height="498dp"
-        android:id="@+id/vpCarnets"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369" />
+        app:layout_constraintVertical_bias="0.369">
+
+    </androidx.viewpager.widget.ViewPager>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

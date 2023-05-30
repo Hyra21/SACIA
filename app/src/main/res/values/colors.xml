@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_uabc">#00723F</color>
     <color name="yellow_uabc">#FEBE10</color>
+    <color name="light_green_uabc">#50B848</color>
 </resources>

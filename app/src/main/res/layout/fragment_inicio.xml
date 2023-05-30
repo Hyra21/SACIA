@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:width="300dp"
         android:background="@drawable/btn_inicio"
-        android:text="Iniciar Sesión"
+        android:text="@string/IniciarSesion"
         android:textColor="@drawable/txt_btn_inicio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
             android:id="@+id/textInputCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo"
+            android:hint="@string/Correo"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +73,7 @@
             android:id="@+id/textInputContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/Contrasena"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 

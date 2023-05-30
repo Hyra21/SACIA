@@ -28,75 +28,17 @@ import java.sql.Statement;
 public class InicioFragment extends Fragment {
     TextInputEditText Correo , Contrasena;
     Button IniSesion;
-    TextView text;
     Boolean CorreoEncontrado=false, ContraEncontrada=false;
     NavController navController;
     View viewNav;
-    String Matricula="", codigoPrograma="", nomPrograma="";
-    String nombreAlumno="", apellidoMAlumno="", apellidoPAlumno="";
+    private String Matricula="", codigoPrograma="", nomPrograma="";
+    private String nombreAlumno="", apellidoMAlumno="", apellidoPAlumno="";
 
     class Task extends AsyncTask<Void, Void, Void>{
-        String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString(), error="";
 
         @Override
         protected Void doInBackground(Void... voids) {
-
-            boolean e1 = false, e2 = false;
-            try {
-                //Conexion con la base de datos y obtencion de los datos
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
-                Statement statement = connection.createStatement();
-
-                //Query para  obtener la tabla de usuarios
-                ResultSet resultSet = statement.executeQuery("SELECT correo, nombreUsuario, apellidoMaternoUsuario, apellidoPaternoUsuario, contrasenaUsuario, tipoUsuario FROM usuarios");
-                while (resultSet.next()) {
-                    if (resultSet.getString(6).equals("Alumno")) {
-                        if (resultSet.getString(1).equals(CorreoS)) {
-                            CorreoEncontrado = true;
-                            if (resultSet.getString(5).equals(ContrasenaS)) {
-                                nombreAlumno = resultSet.getString(2);
-                                apellidoMAlumno = resultSet.getString(3);
-                                apellidoPAlumno = resultSet.getString(4);
-                                ContraEncontrada = true;
-                            }
-                        }
-                    }
-                }
-
-                if (ContraEncontrada == true) {
-                    //Query para obtener las tabla que identifican a alumno
-                    resultSet = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
-                    //Validacion de credenciales
-
-                    while (resultSet.next()) {
-                        if (resultSet.getString(2).equals(CorreoS)) {
-                            Matricula = resultSet.getString(1);
-                        }
-                    }
-
-                    resultSet = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
-                    while (resultSet.next()) {
-                        if (resultSet.getString(1).equals(Matricula)) {
-                            codigoPrograma = resultSet.getString(2);
-                            guardarPreferencias();
-                        }
-                    }
-
-                    resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, nombreProgramaEducativo FROM programaEducativo");
-                    while (resultSet.next()) {
-                        if (resultSet.getString(1).equals(codigoPrograma)) {
-                            nomPrograma = resultSet.getString(2);
-                            guardarPreferencias();
-                        }
-                    }
-
-
-                }
-                connection.close();
-            } catch (Exception e){
-                error = e.toString();
-            }
+            buscarCredendiales();
             return null;
         }
 
@@ -203,5 +145,71 @@ public class InicioFragment extends Fragment {
             return false;
         }
         return true;
+    }
+
+    private void buscarCredendiales(){
+        String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString();
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            Statement statement = connection.createStatement();
+
+            //Query para  obtener la tabla de usuarios
+            ResultSet resultSet = statement.executeQuery("SELECT correo, nombreUsuario, apellidoMaternoUsuario, apellidoPaternoUsuario, contrasenaUsuario, tipoUsuario FROM usuarios");
+            while (resultSet.next()) {
+                if (resultSet.getString(6).equals("Alumno")) {
+                    if (resultSet.getString(1).equals(CorreoS)) {
+                        CorreoEncontrado = true;
+                        if (resultSet.getString(5).equals(ContrasenaS)) {
+                            nombreAlumno = resultSet.getString(2);
+                            apellidoMAlumno = resultSet.getString(3);
+                            apellidoPAlumno = resultSet.getString(4);
+                            ContraEncontrada = true;
+                            buscarInformacionAlumno(CorreoS);
+                        }
+                    }
+                }
+            }
+            connection.close();
+        } catch (Exception e){
+
+        }
+    }
+
+    private void buscarInformacionAlumno(String CorreoS){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            Statement statement = connection.createStatement();
+
+            //Query para obtener las tabla que identifican a alumno
+            ResultSet resultSet = statement.executeQuery("SElECT matricula, correoAlumno FROM identificaAlumno");
+            //Validacion de credenciales
+
+            while (resultSet.next()) {
+                if (resultSet.getString(2).equals(CorreoS)) {
+                    Matricula = resultSet.getString(1);
+                }
+            }
+
+            resultSet = statement.executeQuery("SELECT matriculaAlumno, codigoProgramaEducativoAlumno FROM alumno");
+            while (resultSet.next()) {
+                if (resultSet.getString(1).equals(Matricula)) {
+                    codigoPrograma = resultSet.getString(2);
+                }
+            }
+
+            resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, nombreProgramaEducativo FROM programaEducativo");
+            while (resultSet.next()) {
+                if (resultSet.getString(1).equals(codigoPrograma)) {
+                    nomPrograma = resultSet.getString(2);
+                    guardarPreferencias();
+                }
+            }
+            connection.close();
+        } catch (Exception e){
+
+        }
     }
 }
