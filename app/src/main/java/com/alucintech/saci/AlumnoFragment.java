@@ -15,16 +15,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,6 +42,9 @@ public class AlumnoFragment extends Fragment {
     TextView nombreAlumno, nombrePrograma;
     Button btnCarnets;
     String matricula="", nomAlumno="", nomPrograma="", apeMaterno="", apePaterno="";
+    MaterialToolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
     NavController navigation;
 
     private static final String CHANNEL_ID = "MyChannelId";
@@ -75,9 +84,28 @@ public class AlumnoFragment extends Fragment {
         String nombreCompleto = nomAlumno + " " + apePaterno + " " + apeMaterno;
         nombreAlumno.setText(nombreCompleto);
         nombrePrograma.setText(nomPrograma);
+        toolbar = view.findViewById(R.id.topAppBar);
+        drawerLayout = view.findViewById(R.id.alumnoDrawerLayout);
+        navigationView = view.findViewById(R.id.alumnoNavigation_view);
 
         showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");
         btnCarnets = view.findViewById(R.id.btnCarnets);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
+                return true;
+            }
+        });
 
         btnCarnets.setOnClickListener(new View.OnClickListener() {
             @Override

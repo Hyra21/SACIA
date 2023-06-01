@@ -11,41 +11,41 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 
-import com.alucintech.saci.fragments.CarnetFragment;
+import com.alucintech.saci.fragments.Carnet_rwAdapter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ConsultaCarnet extends Fragment {
 
-    ArrayList<Carnet> carnet = new ArrayList<>();
-    private ViewPager pager;
-    private PagerAdapter pagerAdapter;
-    int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0, numSellos=0;
-    String matriculaAlumno="", carnetsCompletos="", estadoCarnet="", cicloEscolar="", fechaCreacion="";
+    ArrayList<Carnet> carnets = new ArrayList<>();
+    int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
+    String matriculaAlumno="", carnetsCompletos="", estadoCarnet="";
     ImageButton btnRegresar, btnScanner;
     NavController navController;
-    List<Fragment> list = new ArrayList<>();
+    RecyclerView recyclerView;
     View vista;
+    String flag = "no entra";
 
     class Task extends AsyncTask<View, View, View>{
         //Aquí subimos todos los datos a la base de datos
         @Override
         protected View doInBackground(View... views) {
+
 
             carnetsActuales();
             if(numCarnetSemestre==0 && numCarnetCarrera==0){
@@ -56,16 +56,17 @@ public class ConsultaCarnet extends Fragment {
                     generarCarnet();
                 }
             }
+            mostrarCarnet();
 
             return null;
         }
         //Aquí crearemos la vista de los carnets del alumno
         @Override
         protected void onPostExecute(View view) {
-
             super.onPostExecute(view);
-
-            mostrarCarnet();
+            Carnet_rwAdapter adapter = new Carnet_rwAdapter(getActivity(),carnets);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         }
 
     }
@@ -78,11 +79,16 @@ public class ConsultaCarnet extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        cargarPreferencias();
+
+        recyclerView = view.findViewById(R.id.rwCarnet);
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);
         vista = view;
 
-        cargarPreferencias();
+        new Task().execute();
+
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,36 +104,7 @@ public class ConsultaCarnet extends Fragment {
             }
         });
 
-        new Task().execute();
-    }
 
-    private void setUpCarnets(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT numFolio, numeroSellosCarnet, cicloEscolar, fechaCreacionCarnet, matriculaAlumno, estadoCarnet, codigoCarnet FROM alumno");
-
-            while (resultSet.next()){
-                if(resultSet.getString(5).equals(matriculaAlumno)){
-
-                    int folio = resultSet.getInt(1);
-                    int sellos = resultSet.getInt(2);
-                    String ciclo = resultSet.getString(3);
-                    String fechaC = resultSet.getString(4);
-                    int matricula = resultSet.getInt(5);
-                    String estado = resultSet.getString(6);
-                    int clave = resultSet.getInt(7);
-
-                    carnet.add(new Carnet(folio,sellos,ciclo,fechaC,matricula,estado,clave));
-                }
-            }
-
-        } catch (Exception e){
-
-        }
-
-        for(int i = 0;)
     }
 
     public void guardarPreferencias(){
@@ -151,7 +128,7 @@ public class ConsultaCarnet extends Fragment {
     }
 
     //Metodo para obtener los carnets del semestre actual y los carnets de toda la carrera del alumno
-    public void carnetsActuales(){
+    private void carnetsActuales(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
@@ -159,6 +136,7 @@ public class ConsultaCarnet extends Fragment {
             ResultSet resultSet = statement.executeQuery("SELECT matriculaAlumno, numcarnetSemestre, numCarnetsCarrera FROM alumno");
             while (resultSet.next()){
                 if(resultSet.getString(1).equals(matriculaAlumno)){
+
                     numCarnetSemestre = resultSet.getInt(2);
                     numCarnetCarrera = resultSet.getInt(3);
                 }
@@ -172,7 +150,7 @@ public class ConsultaCarnet extends Fragment {
     }
 
     //Metodo para obtener el ultimo folio generado y generar uno nuevo para el carnet
-    public void folioActual(){
+    private void folioActual(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
@@ -189,7 +167,7 @@ public class ConsultaCarnet extends Fragment {
     }
 
     //Metodo para obtener el ultimo carnet generado del alumno
-    public void carnetActual(){
+    private void carnetActual(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
@@ -209,7 +187,7 @@ public class ConsultaCarnet extends Fragment {
     }
 
     //Metodo para generar y almacenar carnets en la base de datos
-    public void generarCarnet(){
+    private void generarCarnet(){
         try{
             folioActual();
             Class.forName("com.mysql.jdbc.Driver");
@@ -226,36 +204,41 @@ public class ConsultaCarnet extends Fragment {
         }
     }
 
-    public void buscarCarnet(){
-        try{
+    private void mostrarCarnet(){
+        int folio;
+        int sellos;
+        String ciclo;
+        String fechaC;
+        int matricula;
+        String estado;
+        int clave;
+
+
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT numFolio, numeroSellosCarnet, cicloEscolarCarnet, fechaCreacionCarnet, matriculaAlumno, estadoCarnet, codigoCarnet FROM carnet");
 
-            while(resultSet.next()){
+            while (resultSet.next()){
                 if(resultSet.getString(5).equals(matriculaAlumno)){
-                    folioActual = resultSet.getInt(1);
-                    numSellos = resultSet.getInt(2);
-                    cicloEscolar = resultSet.getString(3);
-                    fechaCreacion = resultSet.getString(4);
-                    estadoCarnet = resultSet.getString(6);
-                    claveCarnet = resultSet.getInt(7);
+
+                    folio = resultSet.getInt(1);
+                    sellos = resultSet.getInt(2);
+                    ciclo = resultSet.getString(3);
+                    fechaC = resultSet.getString(4);
+                    matricula = resultSet.getInt(5);
+                    estado = resultSet.getString(6);
+                    clave = resultSet.getInt(7);
+
+                    carnets.add(new Carnet(folio,sellos,ciclo,fechaC,matricula,estado,clave));
+
                 }
             }
             connection.close();
-        }catch (Exception e){
-
+        } catch (Exception e){
+            Log.d(e.toString(),"falla");
         }
     }
 
-    //Metodo para agregar carnet al view pager de los carnets
-    public void mostrarCarnet() {
-        buscarCarnet();
-        list.add(new CarnetFragment());
-
-        pager = vista.findViewById(R.id.vpCarnets);
-        pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager(), list);
-        pager.setAdapter(pagerAdapter);
-    }
 }

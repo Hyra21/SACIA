@@ -38,7 +38,7 @@ public class InicioFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            buscarCredendiales();
+            buscarCredenciales();
             return null;
         }
 
@@ -147,7 +147,7 @@ public class InicioFragment extends Fragment {
         return true;
     }
 
-    private void buscarCredendiales(){
+    private void buscarCredenciales(){
         String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString();
 
         try{

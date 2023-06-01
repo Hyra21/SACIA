@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:layout_margin="8dp"
         app:cardBackgroundColor="@color/yellow_uabc"
         app:cardCornerRadius="7dp"
         app:cardElevation="10dp"
@@ -25,104 +26,119 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/twNumCarnet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/allerta"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/btnSello1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnSello1"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/button5"
-                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintBottom_toTopOf="@+id/btnSello5"
+                app:layout_constraintEnd_toStartOf="@+id/btnSello2"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnSello2"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/button6"
-                app:layout_constraintEnd_toStartOf="@+id/button3"
+                app:layout_constraintBottom_toTopOf="@+id/btnSello6"
+                app:layout_constraintEnd_toStartOf="@+id/btnSello3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnSello3"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/button7"
-                app:layout_constraintEnd_toStartOf="@+id/button4"
+                app:layout_constraintBottom_toTopOf="@+id/btnSello7"
+                app:layout_constraintEnd_toStartOf="@+id/btnSello4"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnSello4"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/button8"
+                app:layout_constraintBottom_toTopOf="@+id/btnSello8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.125" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btnSello5"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button6"
+                app:layout_constraintEnd_toStartOf="@+id/btnSello6"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/btnSello6"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button7" />
+                app:layout_constraintEnd_toStartOf="@+id/btnSello7" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/btnSello7"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button8" />
+                app:layout_constraintEnd_toStartOf="@+id/btnSello8" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/btnSello8"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"

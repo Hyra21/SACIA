@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/green_uabc"
-                app:navigationIcon="@drawable/baseline_menu_24">
+                app:navigationIcon="@drawable/baseline_menu_24"
+                app:title="Carnets">
 
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -65,13 +66,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rwCarnet"
             android:layout_width="410dp"
-            android:layout_height="574dp"
+            android:layout_height="498dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintVertical_bias="0.381"></androidx.recyclerview.widget.RecyclerView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
