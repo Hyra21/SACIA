@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,13 +38,21 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
 
     }
 
-    // Aqui se asignan todos los valores a todas las filas/carnets
+    // Aqui se asignan todos los valores a los componenetes del layout que se esta reutilizando
     @Override
     public void onBindViewHolder(@NonNull Carnet_rwAdapter.MyViewHolder holder, int position) {
 
 
         int pos = position + 1;
         holder.twNumCarnet.setText("Carnet #"+ pos);
+
+        if(carnets.get(position).getEstadoCarnet().equals("En Proceso")){
+            holder.imageView.setImageResource(R.drawable.enproceso_carnet);
+        }
+
+        if(carnets.get(position).getEstadoCarnet().equals("Completado")){
+            holder.imageView.setImageResource(R.drawable.completado_carnet);
+        }
 
         //Aqui tambien iran los botonos
 
@@ -58,13 +67,15 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
     // Esta clase nos permite obtener todos los componentes del layout carnet.xml y asi poder reutilizarlos y asignarle los datos de cada carnet
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
+        ImageView imageView;
         CardView cardView;
         Button btnSello1, btnSello2, btnSello3, btnSello4, btnSello5, btnSello6, btnSello7, btnSello8;
         TextView twNumCarnet;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            imageView = itemView.findViewById(R.id.EstadoCarnet);
+            cardView = itemView.findViewById(R.id.cwCarnet);
             btnSello1 = itemView.findViewById(R.id.btnSello1);
             btnSello2 = itemView.findViewById(R.id.btnSello2);
             btnSello3 = itemView.findViewById(R.id.btnSello3);

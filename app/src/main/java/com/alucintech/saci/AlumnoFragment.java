@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -87,6 +88,7 @@ public class AlumnoFragment extends Fragment {
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.alumnoDrawerLayout);
         navigationView = view.findViewById(R.id.alumnoNavigation_view);
+        navigation = Navigation.findNavController(view);
 
         showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");
         btnCarnets = view.findViewById(R.id.btnCarnets);
@@ -101,7 +103,20 @@ public class AlumnoFragment extends Fragment {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                switch (id){
+                    case R.id.usuario:
 
+                        break;
+                    case R.id.help:
+                        Toast.makeText(getActivity(),"Para consultar ayuda contactarse al correo yhigaque@uabc.edu.mx", Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.cerrarSesion:
+                        borrarPreferencias();
+                        navigation.navigate(R.id.action_alumnoFragment_to_inicioFragment);
+                        break;
+                }
 
                 return true;
             }
@@ -110,10 +125,17 @@ public class AlumnoFragment extends Fragment {
         btnCarnets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigation = Navigation.findNavController(view);
+
                 navigation.navigate(R.id.action_alumnoFragment_to_consultaCarnet);
             }
         });
+    }
+
+    public void borrarPreferencias(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
     }
 
     private void cargarPreferencias(){

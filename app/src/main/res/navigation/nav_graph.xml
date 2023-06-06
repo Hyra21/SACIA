@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_consultaCarnet_to_informacionCarnetFragment"
             app:destination="@id/informacionCarnetFragment" />
+        <action
+            android:id="@+id/action_consultaCarnet_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
     </fragment>
     <fragment
         android:id="@+id/consultaEvento"

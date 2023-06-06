@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,18 +19,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import com.alucintech.saci.fragments.Carnet_rwAdapter;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ConsultaCarnet extends Fragment {
 
@@ -39,7 +48,10 @@ public class ConsultaCarnet extends Fragment {
     NavController navController;
     RecyclerView recyclerView;
     View vista;
-    String flag = "no entra";
+    MaterialToolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Boolean flagNingunCarnet = false;
 
     class Task extends AsyncTask<View, View, View>{
         //Aquí subimos todos los datos a la base de datos
@@ -49,6 +61,7 @@ public class ConsultaCarnet extends Fragment {
 
             carnetsActuales();
             if(numCarnetSemestre==0 && numCarnetCarrera==0){
+                flagNingunCarnet = true;
                 generarCarnet();
             }else if(numCarnetCarrera < 4){
                 carnetActual();
@@ -81,19 +94,50 @@ public class ConsultaCarnet extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         cargarPreferencias();
-
+        toolbar = view.findViewById(R.id.topAppBar);
+        drawerLayout = view.findViewById(R.id.carnetDrawerLayout);
+        navigationView = view.findViewById(R.id.carnetNavigation_view);
         recyclerView = view.findViewById(R.id.rwCarnet);
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);
         vista = view;
-
+        navController = Navigation.findNavController(view);
         new Task().execute();
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController = Navigation.findNavController(view);
+
                 navController.navigate(R.id.action_consultaCarnet_to_alumnoFragment);
+            }
+        });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                drawerLayout.closeDrawer(GravityCompat.START);
+                switch (id){
+                    case R.id.usuario:
+                        Toast.makeText(getActivity(),"Para consultar ayuda contactarse al correo yhigaque@uabc.edu.mx", Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.help:
+                        Toast.makeText(getActivity(),"Para consultar ayuda contactarse al correo yhigaque@uabc.edu.mx", Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.cerrarSesion:
+                        borrarPreferencias();
+                        navController.navigate(R.id.action_consultaCarnet_to_inicioFragment);
+                        break;
+                }
+
+                return true;
             }
         });
 
@@ -105,6 +149,13 @@ public class ConsultaCarnet extends Fragment {
         });
 
 
+    }
+
+    public void borrarPreferencias(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
     }
 
     public void guardarPreferencias(){
@@ -193,7 +244,22 @@ public class ConsultaCarnet extends Fragment {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO carnet VALUES (" + folioActual + "," + 0 + ",'2023-1','2023/05/22'," + matriculaAlumno + ",'En Proceso'," + 16981 + ")");
+            int numeroCarnets = numCarnetCarrera + numCarnetSemestre;
+            int nuevaClave;
+            if(numeroCarnets == 0){
+                nuevaClave = 16981;
+            }else{
+                if(numeroCarnets < 3){
+                    nuevaClave = claveCarnet + 1;
+                }else{
+                    nuevaClave = 18073;
+                }
+            }
+
+            String fechaActual = obtenerFecha();
+            String cicloActual = obtenerCicloEscolarActual(fechaActual);
+
+            statement.executeUpdate("INSERT INTO carnet VALUES (" + folioActual + "," + 0 + ",'" + cicloActual + "','" + fechaActual + "'," + matriculaAlumno + ",'En Proceso'," + nuevaClave + ")");
 
             numCarnetSemestre++;
 
@@ -239,6 +305,29 @@ public class ConsultaCarnet extends Fragment {
         } catch (Exception e){
             Log.d(e.toString(),"falla");
         }
+    }
+
+    private String obtenerFecha(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+        return formatoFecha.format(date);
+    }
+
+    private String obtenerCicloEscolarActual(String fechaActual){
+        String[] fechaSeparada = fechaActual.split("/");
+        int mes = Integer.parseInt(fechaSeparada[1]);
+
+        if(mes <= 6){
+            return fechaSeparada[0] + "-1";
+        }
+
+        if(mes <=12){
+            return  fechaSeparada[0] + "-2";
+        }
+
+        return "nada";
     }
 
 }
