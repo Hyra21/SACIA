@@ -82,7 +82,7 @@ public class AlumnoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.alumnoDrawerLayout);
-        navigationView = view.findViewById(R.id.alumnoNavigation_view);
+        navigationView = view.findViewById(R.id.nwAlumno);
         cargarPreferencias();
         nombreAlumno = view.findViewById(R.id.twNombreAlumno);
         nombrePrograma = view.findViewById(R.id.twNombrePrograma);
@@ -94,6 +94,8 @@ public class AlumnoFragment extends Fragment {
 
         showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");
         btnCarnets = view.findViewById(R.id.btnCarnets);
+
+        toolbar.setTitleCentered(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -60,7 +60,6 @@ public class ConsultaCarnetFragment extends Fragment {
         @Override
         protected View doInBackground(View... views) {
 
-
             carnetsActuales();
             if(numCarnetSemestre==0 && numCarnetCarrera==0){
                 flagNingunCarnet = true;
@@ -96,8 +95,9 @@ public class ConsultaCarnetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
         toolbar = view.findViewById(R.id.topAppBar);
+        toolbar.setTitleCentered(true);
         drawerLayout = view.findViewById(R.id.carnetDrawerLayout);
-        navigationView = view.findViewById(R.id.carnetNavigation_view);
+        navigationView = view.findViewById(R.id.nwConsultaCarnets);
         recyclerView = view.findViewById(R.id.rwCarnet);
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);

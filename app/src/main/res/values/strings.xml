@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SACI</string>
+    <string name="app_name">Cimarnet UABC</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Usuario">Usuario</string>
@@ -24,8 +24,8 @@
     <string name="contexto">Sin contexto</string>
     <string name="NumeroCarnet">Carnet #</string>
 
-    <string name="InfoAlumno">Información Alumno:</string>
-    <string name="InfoCarnet">Información Carnet:</string>
+    <string name="InfoAlumno">Información del Alumno:</string>
+    <string name="InfoCarnet">Información del Carnet:</string>
 
     <string name="Nombre">Nombre:</string>
     <string name="Matricula">Matrícula:</string>

@@ -77,8 +77,8 @@ public class InicioFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if(cargarPreferencias()!=true){
             IniSesion = view.findViewById(R.id.buttonInicioSesion);
-            Correo = view.findViewById(R.id.textInputCorreo);
-            Contrasena = view.findViewById(R.id.textInputContrasena);
+            Correo = view.findViewById(R.id.tplCorreo);
+            Contrasena = view.findViewById(R.id.tplContrasena);
 
 
             IniSesion.setOnClickListener(new View.OnClickListener() {

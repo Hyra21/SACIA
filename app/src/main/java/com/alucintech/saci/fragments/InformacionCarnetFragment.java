@@ -60,8 +60,9 @@ public class InformacionCarnetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
         toolbar = view.findViewById(R.id.topAppBar);
+        toolbar.setTitleCentered(true);
         drawerLayout = view.findViewById(R.id.informacionCarnetDrawerLayout);
-        navigationView = view.findViewById(R.id.informacionCarnetNavigation_view);
+        navigationView = view.findViewById(R.id.nwInformacionCarnet);
         navigation = Navigation.findNavController(view);
 
         twNombreAlumno = view.findViewById(R.id.twNombreAlumnoInformacion);

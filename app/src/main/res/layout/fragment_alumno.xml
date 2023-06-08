@@ -66,18 +66,16 @@
             android:id="@+id/twNombreAlumno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="36dp"
             android:fontFamily="@font/allerta"
             android:text="Nombre Completo del Alumno"
             android:textColor="#070000"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.746"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twBienvenido"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintVertical_bias="0.021" />
 
         <TextView
             android:id="@+id/twPrograma"
@@ -145,7 +143,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/alumnoNavigation_view"
+        android:id="@+id/nwAlumno"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
