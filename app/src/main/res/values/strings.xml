@@ -22,6 +22,20 @@
     <string name="help">Ayuda</string>
 
     <string name="contexto">Sin contexto</string>
+    <string name="NumeroCarnet">Carnet #</string>
+
+    <string name="InfoAlumno">Información Alumno:</string>
+    <string name="InfoCarnet">Información Carnet:</string>
+
+    <string name="Nombre">Nombre:</string>
+    <string name="Matricula">Matrícula:</string>
+    <string name="Programa">(PE):</string>
+    <string name="Informacion">Vacio</string>
+
+    <string name="NumFolio">Num. Folio:</string>
+    <string name="CicloEscolar">Ciclo Escolar:</string>
+    <string name="FechaCreacion">Fecha de Creación:</string>
+    <string name="Clave">Clave de Asignatura:</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.alucintech.saci;
+package com.alucintech.saci.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alucintech.saci.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.sql.Connection;

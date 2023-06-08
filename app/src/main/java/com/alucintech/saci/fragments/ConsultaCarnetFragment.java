@@ -1,4 +1,4 @@
-package com.alucintech.saci;
+package com.alucintech.saci.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +26,9 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-import com.alucintech.saci.fragments.Carnet_rwAdapter;
+import com.alucintech.saci.Carnet;
+import com.alucintech.saci.adapters.Carnet_rwAdapter;
+import com.alucintech.saci.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -39,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ConsultaCarnet extends Fragment {
+public class ConsultaCarnetFragment extends Fragment {
 
     ArrayList<Carnet> carnets = new ArrayList<>();
     int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
@@ -92,7 +94,6 @@ public class ConsultaCarnet extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         cargarPreferencias();
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.carnetDrawerLayout);

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/inicioFragment"
-        android:name="com.alucintech.saci.InicioFragment"
+        android:name="com.alucintech.saci.fragments.InicioFragment"
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/alumnoFragment"
-        android:name="com.alucintech.saci.AlumnoFragment"
+        android:name="com.alucintech.saci.fragments.AlumnoFragment"
         android:label="fragment_alumno"
         tools:layout="@layout/fragment_alumno" >
         <action
@@ -30,13 +30,8 @@
             app:destination="@id/consultaEvento" />
     </fragment>
     <fragment
-        android:id="@+id/carnetFragment"
-        android:name="com.alucintech.saci.fragments.CarnetFragment"
-        android:label="fragment_carnet"
-        tools:layout="@layout/fragment_carnet" />
-    <fragment
         android:id="@+id/consultaCarnet"
-        android:name="com.alucintech.saci.ConsultaCarnet"
+        android:name="com.alucintech.saci.fragments.ConsultaCarnetFragment"
         android:label="fragment_consulta_carnet"
         tools:layout="@layout/fragment_consulta_carnet" >
         <action
@@ -59,15 +54,13 @@
             app:destination="@id/alumnoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/carnetFragment2"
-        android:name="com.alucintech.saci.fragments.carnetFragment2"
-        android:label="fragment_carnet2"
-        tools:layout="@layout/fragment_carnet2" />
-    <fragment
         android:id="@+id/informacionCarnetFragment"
-        android:name="com.alucintech.saci.InformacionCarnetFragment"
+        android:name="com.alucintech.saci.fragments.InformacionCarnetFragment"
         android:label="fragment_informacion_carnet"
         tools:layout="@layout/fragment_informacion_carnet" >
+        <action
+            android:id="@+id/action_informacionCarnetFragment_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
         <action
             android:id="@+id/action_informacionCarnetFragment_to_consultaCarnet"
             app:destination="@id/consultaCarnet" />

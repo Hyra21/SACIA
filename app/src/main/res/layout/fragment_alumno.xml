@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".AlumnoFragment">
+    tools:context=".fragments.AlumnoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/green_uabc"
+                android:background="@color/light_green_uabc"
                 app:navigationIcon="@drawable/baseline_menu_24"
                 app:title="Cimarnet UABC">
 

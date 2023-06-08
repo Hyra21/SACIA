@@ -1,4 +1,4 @@
-package com.alucintech.saci;
+package com.alucintech.saci.fragments;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alucintech.saci.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -79,15 +80,16 @@ public class AlumnoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        toolbar = view.findViewById(R.id.topAppBar);
+        drawerLayout = view.findViewById(R.id.alumnoDrawerLayout);
+        navigationView = view.findViewById(R.id.alumnoNavigation_view);
         cargarPreferencias();
         nombreAlumno = view.findViewById(R.id.twNombreAlumno);
         nombrePrograma = view.findViewById(R.id.twNombrePrograma);
         String nombreCompleto = nomAlumno + " " + apePaterno + " " + apeMaterno;
         nombreAlumno.setText(nombreCompleto);
         nombrePrograma.setText(nomPrograma);
-        toolbar = view.findViewById(R.id.topAppBar);
-        drawerLayout = view.findViewById(R.id.alumnoDrawerLayout);
-        navigationView = view.findViewById(R.id.alumnoNavigation_view);
+
         navigation = Navigation.findNavController(view);
 
         showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");

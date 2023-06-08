@@ -5,8 +5,8 @@
     android:id="@+id/carnetDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#50B848"
-    tools:context=".ConsultaCarnet">
+    android:background="@color/white"
+    tools:context=".fragments.ConsultaCarnetFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,9 +24,9 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/green_uabc"
+                android:background="@color/light_green_uabc"
                 app:navigationIcon="@drawable/baseline_menu_24"
-                app:title="Carnets">
+                app:title="Mis Carnets">
 
             </com.google.android.material.appbar.MaterialToolbar>
 

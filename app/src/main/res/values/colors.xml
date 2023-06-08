@@ -11,4 +11,6 @@
     <color name="yellow_uabc">#FEBE10</color>
     <color name="light_green_uabc">#50B848</color>
     <color name="light_orange">#DC851F</color>
+    <color name="dark_green_uabc">#024731</color>
+    <color name="dark_yellow_uabc">#B08208</color>
 </resources>

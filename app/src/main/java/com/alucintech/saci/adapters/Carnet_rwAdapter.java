@@ -1,15 +1,21 @@
-package com.alucintech.saci.fragments;
+package com.alucintech.saci.adapters;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alucintech.saci.Carnet;
@@ -18,7 +24,6 @@ import com.alucintech.saci.R;
 import java.util.ArrayList;
 
 public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyViewHolder> {
-
     Context context;
     ArrayList<Carnet> carnets;
 
@@ -40,11 +45,13 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
 
     // Aqui se asignan todos los valores a los componenetes del layout que se esta reutilizando
     @Override
-    public void onBindViewHolder(@NonNull Carnet_rwAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Carnet_rwAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
 
 
         int pos = position + 1;
         holder.twNumCarnet.setText("Carnet #"+ pos);
+
 
         if(carnets.get(position).getEstadoCarnet().equals("En Proceso")){
             holder.imageView.setImageResource(R.drawable.enproceso_carnet);
@@ -53,6 +60,17 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
         if(carnets.get(position).getEstadoCarnet().equals("Completado")){
             holder.imageView.setImageResource(R.drawable.completado_carnet);
         }
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Carnet carnet = carnets.get(position);
+                guardarPreferenciasCarnet(carnet.getNumFolio(),carnet.getCicloEscolarCarnet(),carnet.getFechaCreacionCarnet(),carnet.getClaveCarnet());
+
+                NavController navController = Navigation.findNavController((Activity) context, R.id.nav_host_fragment);
+                navController.navigate(R.id.action_consultaCarnet_to_informacionCarnetFragment);
+            }
+        });
 
         //Aqui tambien iran los botonos
 
@@ -87,5 +105,19 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
             twNumCarnet = itemView.findViewById(R.id.twNumCarnet);
 
         }
+    }
+
+    //Metodo para guardar informacion del carnet seleccionado
+    public void guardarPreferenciasCarnet(int folio, String cilo, String fecha, int clave){
+        SharedPreferences preferences = context.getSharedPreferences("carnetTemp",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putInt("numFolio",folio);
+        editor.putString("ciclo",cilo);
+        editor.putString("fecha",fecha);
+        editor.putInt("clave",clave);
+
+        editor.commit();
+
     }
 }

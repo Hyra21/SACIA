@@ -1,4 +1,4 @@
-package com.alucintech.saci;
+package com.alucintech.saci.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
