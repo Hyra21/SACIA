@@ -42,7 +42,7 @@ import java.sql.Statement;
 public class AlumnoFragment extends Fragment {
 
     TextView nombreAlumno, nombrePrograma;
-    Button btnCarnets;
+    Button btnCarnets, btnActividades;
     String matricula="", nomAlumno="", nomPrograma="", apeMaterno="", apePaterno="";
     MaterialToolbar toolbar;
     DrawerLayout drawerLayout;
@@ -94,8 +94,7 @@ public class AlumnoFragment extends Fragment {
 
         showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");
         btnCarnets = view.findViewById(R.id.btnCarnets);
-
-        toolbar.setTitleCentered(true);
+        btnActividades = view.findViewById(R.id.btnActividades);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +130,13 @@ public class AlumnoFragment extends Fragment {
             public void onClick(View view) {
 
                 navigation.navigate(R.id.action_alumnoFragment_to_consultaCarnet);
+            }
+        });
+
+        btnActividades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigation.navigate(R.id.action_alumnoFragment_to_consultaActividades);
             }
         });
     }

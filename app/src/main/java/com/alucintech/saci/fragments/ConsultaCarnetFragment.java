@@ -26,7 +26,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-import com.alucintech.saci.Carnet;
+import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.adapters.Carnet_rwAdapter;
 import com.alucintech.saci.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -74,7 +74,7 @@ public class ConsultaCarnetFragment extends Fragment {
 
             return null;
         }
-        //Aquí crearemos la vista de los carnets del alumno
+        //Aquí crearemos la vista de los carnets del alumno en el recyclerView
         @Override
         protected void onPostExecute(View view) {
             super.onPostExecute(view);
@@ -95,7 +95,6 @@ public class ConsultaCarnetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
         toolbar = view.findViewById(R.id.topAppBar);
-        toolbar.setTitleCentered(true);
         drawerLayout = view.findViewById(R.id.carnetDrawerLayout);
         navigationView = view.findViewById(R.id.nwConsultaCarnets);
         recyclerView = view.findViewById(R.id.rwCarnet);

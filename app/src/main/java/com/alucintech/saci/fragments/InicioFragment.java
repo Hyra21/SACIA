@@ -122,6 +122,7 @@ public class InicioFragment extends Fragment {
         editor.putString("password", contrasena);
         editor.putString("matricula", Matricula);
         editor.putString("programaEducativo", nomPrograma);
+        editor.putString("codigoProgramaEducativo", codigoPrograma);
         editor.putString("nombre", nombreAlumno);
         editor.putString("apellidoMaterno", apellidoMAlumno);
         editor.putString("apellidoPaterno", apellidoPAlumno);

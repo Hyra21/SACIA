@@ -38,12 +38,12 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
         <action
-            android:id="@+id/action_alumnoFragment_to_consultaEvento"
-            app:destination="@id/consultaEvento"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_alumnoFragment_to_consultaActividades"
+            app:destination="@id/consultaActividades"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/consultaCarnet"
@@ -73,17 +73,24 @@
             app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
-        android:id="@+id/consultaEvento"
-        android:name="com.alucintech.saci.ConsultaEvento"
+        android:id="@+id/consultaActividades"
+        android:name="com.alucintech.saci.fragments.ConsultaActividadesFragment"
         android:label="fragment_consulta_evento"
-        tools:layout="@layout/fragment_consulta_evento" >
+        tools:layout="@layout/fragment_consulta_actividades" >
         <action
-            android:id="@+id/action_consultaEvento_to_alumnoFragment"
+            android:id="@+id/action_consultaActividades_to_alumnoFragment"
             app:destination="@id/alumnoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_consultaActividades_to_inicioFragment"
+            app:destination="@id/inicioFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/informacionCarnetFragment"

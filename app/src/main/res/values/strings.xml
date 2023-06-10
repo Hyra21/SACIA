@@ -12,7 +12,7 @@
     <string name="Bienvenida">Bienvenido</string>
     <string name="ProgramaEducativo">Programa Educativo</string>
     <string name="btnCarnets">Carnets</string>
-    <string name="btnEventos">Eventos</string>
+    <string name="btnActividades">Actividades</string>
 
     <string name="btnSellos">Boton para sellos</string>
 
@@ -29,7 +29,7 @@
 
     <string name="Nombre">Nombre:</string>
     <string name="Matricula">Matrícula:</string>
-    <string name="Programa">(PE):</string>
+    <string name="Programa">PE:</string>
     <string name="Informacion">Vacio</string>
 
     <string name="NumFolio">Num. Folio:</string>
@@ -37,5 +37,10 @@
     <string name="FechaCreacion">Fecha de Creación:</string>
     <string name="Clave">Clave de Asignatura:</string>
 
+    <string name="NombreActividad">Nombre Actividad:</string>
+    <string name="TipoActividad">Tipo de Actividad:</string>
+    <string name="FechaActividad">Fecha de Actividad:</string>
+    <string name="HorarioActividad">Horarios:</string>
+    <string name="Modalidad">Modalidad:</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.alucintech.saci;
+package com.alucintech.saci.objects;
 
 public class Carnet {
 

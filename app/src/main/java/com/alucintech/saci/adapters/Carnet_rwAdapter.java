@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -18,7 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alucintech.saci.Carnet;
+import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.R;
 
 import java.util.ArrayList;
@@ -46,8 +45,6 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
     // Aqui se asignan todos los valores a los componenetes del layout que se esta reutilizando
     @Override
     public void onBindViewHolder(@NonNull Carnet_rwAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
-
 
         int pos = position + 1;
         holder.twNumCarnet.setText("Carnet #"+ pos);
