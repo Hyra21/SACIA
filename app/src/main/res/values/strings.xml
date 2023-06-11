@@ -27,6 +27,9 @@
     <string name="InfoAlumno">Información del Alumno:</string>
     <string name="InfoCarnet">Información del Carnet:</string>
 
+    <string name="InfoActividad">Información de la Actividad:</string>
+    <string name="InfoEvento">Información del Evento:</string>
+
     <string name="Nombre">Nombre:</string>
     <string name="Matricula">Matrícula:</string>
     <string name="Programa">PE:</string>
@@ -38,9 +41,13 @@
     <string name="Clave">Clave de Asignatura:</string>
 
     <string name="NombreActividad">Nombre Actividad:</string>
-    <string name="TipoActividad">Tipo de Actividad:</string>
-    <string name="FechaActividad">Fecha de Actividad:</string>
-    <string name="HorarioActividad">Horarios:</string>
+    <string name="Evento">Evento:</string>
+    <string name="TipoActividad">Tipo:</string>
+    <string name="FechaActividad">Fecha:</string>
+    <string name="HorarioActividad">Horario:</string>
     <string name="Modalidad">Modalidad:</string>
+    <string name="Lugar">Lugar:</string>
+    <string name="Espacios">Espacios:</string>
+    <string name="Ponente">Ponente:</string>
 
 </resources>

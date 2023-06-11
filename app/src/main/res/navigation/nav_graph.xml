@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/inicioFragment">
+    app:startDestination="@id/informacionActividadFragment">
 
     <fragment
         android:id="@+id/inicioFragment"
@@ -91,6 +91,13 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_consultaActividades_to_informacionActividadFragment"
+            app:destination="@id/informacionActividadFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/informacionCarnetFragment"
@@ -111,5 +118,25 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/informacionActividadFragment"
+        android:name="com.alucintech.saci.informacionActividadFragment"
+        android:label="fragment_informacion_actividad"
+        tools:layout="@layout/fragment_informacion_actividad" >
+        <action
+            android:id="@+id/action_informacionActividadFragment_to_consultaActividades"
+            app:destination="@id/consultaActividades"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_informacionActividadFragment_to_inicioFragment"
+            app:destination="@id/inicioFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
 </navigation>

@@ -84,11 +84,14 @@
 
                     <ImageView
                         android:id="@+id/imwActividad"
-                        android:layout_width="149dp"
-                        android:layout_height="130dp"
+                        android:layout_width="166dp"
+                        android:layout_height="126dp"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
                         tools:ignore="ImageContrastCheck"
                         tools:srcCompat="@tools:sample/avatars" />
 
@@ -166,10 +169,10 @@
                         android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.574"
+                        app:layout_constraintHorizontal_bias="0.543"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.100000024" />
+                        app:layout_constraintVertical_bias="0.099" />
 
                     <TextView
                         android:id="@+id/textView14"
@@ -179,10 +182,10 @@
                         android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.593"
+                        app:layout_constraintHorizontal_bias="0.559"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.37" />
+                        app:layout_constraintVertical_bias="0.378" />
 
                     <TextView
                         android:id="@+id/textView15"
@@ -192,10 +195,10 @@
                         android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.476"
+                        app:layout_constraintHorizontal_bias="0.574"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.639" />
+                        app:layout_constraintVertical_bias="0.63" />
 
                     <TextView
                         android:id="@+id/textView16"
@@ -205,10 +208,10 @@
                         android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.495"
+                        app:layout_constraintHorizontal_bias="0.611"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.9" />
+                        app:layout_constraintVertical_bias="0.909" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
