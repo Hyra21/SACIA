@@ -73,7 +73,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.381">
+            app:layout_constraintVertical_bias="0.377">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -87,5 +87,14 @@
         android:layout_gravity="start"
         app:menu="@menu/menu_alumno"
         />
+
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/barcodeViewActividades"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        />
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

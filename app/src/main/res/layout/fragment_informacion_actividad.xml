@@ -63,10 +63,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cwEvento"
                         android:layout_width="350dp"
-                        android:layout_height="66dp"
+                        android:layout_height="75dp"
                         android:layout_row="0"
                         android:layout_column="0"
                         android:layout_columnWeight="1"
@@ -78,25 +78,57 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.01999998">
+                        app:layout_constraintVertical_bias="0.0">
 
                         <MultiAutoCompleteTextView
                             android:id="@+id/mtwNombreActividadInformacion"
                             style="@style/MyMultiAutoCompleteTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:clickable="false"
-                            android:duplicateParentState="false"
+                            android:clickable="true"
                             android:editable="false"
-                            android:fontFamily="@font/allerta"
+                            android:gravity="top"
+                            android:text="MultiAutoCompleteTextView"
+                            android:textAlignment="textStart"
                             android:textSize="15sp"
-                            tools:text="@string/NombreActividad" />
+                            tools:ignore="RtlCompat" />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="350dp"
+                        android:layout_height="100dp"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.98" >
+
+                        <MultiAutoCompleteTextView
+                            android:id="@+id/mtwDescripcionActividad"
+                            style="@style/MyMultiAutoCompleteTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:editable="false"
+                            android:gravity="top"
+                            android:text="MultiAutoCompleteTextView"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView2"
                         android:layout_width="350dp"
-                        android:layout_height="380dp"
+                        android:layout_height="280dp"
                         android:layout_row="0"
                         android:layout_column="0"
                         android:layout_columnWeight="1"
@@ -109,26 +141,28 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.83">
+                        app:layout_constraintVertical_bias="0.42000002">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
 
-                            <TextView
-                                android:id="@+id/textView27"
+                            <ImageButton
+                                android:id="@+id/imgbtLinkInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/Evento"
-                                android:textColor="#020000"
-                                android:textSize="15sp"
+                                android:background="#00FFFFFF"
+                                android:clickable="false"
+                                android:contentDescription="@string/contexto"
+                                android:visibility="invisible"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.11"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintHorizontal_bias="0.064"
+                                app:layout_constraintStart_toEndOf="@+id/twModalidadInfo"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.327" />
+                                app:layout_constraintVertical_bias="0.75"
+                                app:srcCompat="@drawable/baseline_link_24" />
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/cardView"
@@ -148,7 +182,7 @@
                                 app:layout_constraintVertical_bias="0.0">
 
                                 <ImageView
-                                    android:id="@+id/imageView3"
+                                    android:id="@+id/imwActividad"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     tools:src="@tools:sample/backgrounds/scenic" />
@@ -163,10 +197,24 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.113"
+                                app:layout_constraintHorizontal_bias="0.106"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.724" />
+                                app:layout_constraintVertical_bias="0.95" />
+
+                            <TextView
+                                android:id="@+id/twPonente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/Ponente"
+                                android:fontFamily="@font/allerta"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintStart_toEndOf="@+id/textView26"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.95" />
 
                             <TextView
                                 android:id="@+id/textView25"
@@ -177,10 +225,24 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.111"
+                                app:layout_constraintHorizontal_bias="0.108"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.645" />
+                                app:layout_constraintVertical_bias="0.85" />
+
+                            <TextView
+                                android:id="@+id/twEspaciosInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/Espacios"
+                                android:fontFamily="@font/allerta"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintStart_toEndOf="@+id/textView25"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.85" />
 
                             <TextView
                                 android:id="@+id/textView24"
@@ -191,10 +253,24 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.119"
+                                app:layout_constraintHorizontal_bias="0.111"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.57" />
+                                app:layout_constraintVertical_bias="0.75" />
+
+                            <TextView
+                                android:id="@+id/twModalidadInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/Modalidad"
+                                android:fontFamily="@font/allerta"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintStart_toEndOf="@+id/textView24"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.75" />
 
                             <TextView
                                 android:id="@+id/textView23"
@@ -205,13 +281,41 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.107"
+                                app:layout_constraintHorizontal_bias="0.104"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.51" />
+                                app:layout_constraintVertical_bias="0.65" />
 
                             <TextView
-                                android:id="@+id/textView22"
+                                android:id="@+id/twHorarioInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/HorarioActividad"
+                                android:fontFamily="@font/allerta"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintStart_toEndOf="@+id/textView23"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.65" />
+
+                            <TextView
+                                android:id="@+id/twFechaInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/FechaActividad"
+                                android:fontFamily="@font/allerta"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintStart_toEndOf="@+id/textView2"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.55" />
+
+                            <TextView
+                                android:id="@+id/textView2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/FechaActividad"
@@ -219,10 +323,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.104"
+                                app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.45" />
+                                app:layout_constraintVertical_bias="0.55" />
 
                             <TextView
                                 android:id="@+id/textView21"
@@ -233,10 +337,24 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.103"
+                                app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.39" />
+                                app:layout_constraintVertical_bias="0.45" />
+
+                            <TextView
+                                android:id="@+id/twTipoActividadInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/TipoActividad"
+                                android:fontFamily="@font/allerta"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintStart_toEndOf="@+id/textView21"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.45" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -290,6 +408,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu_alumno"
+        />
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/barcodeViewActividad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
         />
 
 

@@ -63,7 +63,6 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
             public void onClick(View view) {
                 Carnet carnet = carnets.get(position);
                 guardarPreferenciasCarnet(carnet.getNumFolio(),carnet.getCicloEscolarCarnet(),carnet.getFechaCreacionCarnet(),carnet.getClaveCarnet());
-
                 NavController navController = Navigation.findNavController((Activity) context, R.id.nav_host_fragment);
                 navController.navigate(R.id.action_consultaCarnet_to_informacionCarnetFragment);
             }

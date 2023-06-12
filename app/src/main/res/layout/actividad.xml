@@ -32,7 +32,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cwTituloActividad"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_row="0"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
@@ -49,9 +49,11 @@
 
                 <MultiAutoCompleteTextView
                     android:id="@+id/mtwNombreActividad"
+                    style="@style/MyMultiAutoCompleteTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="false"
+                    android:editable="false"
                     android:fontFamily="@font/allerta"
                     android:textSize="15sp"
                     tools:text="@string/NombreActividad" />
@@ -103,10 +105,10 @@
                         android:text="@string/Informacion"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintHorizontal_bias="0.084"
                         app:layout_constraintStart_toEndOf="@+id/textView13"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.099" />
+                        app:layout_constraintVertical_bias="0.102" />
 
                     <TextView
                         android:id="@+id/twFechaActividad"
@@ -116,10 +118,10 @@
                         android:text="@string/Informacion"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.112"
+                        app:layout_constraintHorizontal_bias="0.082"
                         app:layout_constraintStart_toEndOf="@+id/textView14"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.37" />
+                        app:layout_constraintVertical_bias="0.373" />
 
                     <TextView
                         android:id="@+id/twHorarioActividad"
@@ -152,13 +154,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
+                        android:clickable="false"
                         android:contentDescription="@string/contexto"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.09"
+                        app:layout_constraintHorizontal_bias="0.15"
                         app:layout_constraintStart_toEndOf="@+id/twModalidad"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.909"
+                        app:layout_constraintVertical_bias="0.924"
                         app:srcCompat="@drawable/baseline_link_24" />
 
                     <TextView

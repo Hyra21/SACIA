@@ -22,16 +22,21 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.util.ArrayList;
 
 public class InformacionCarnetFragment extends Fragment {
 
     ArrayList<Carnet> carnets;
+
+    private ScanQRHelper scanQRHelper;
+    DecoratedBarcodeView barcodeView;
     MaterialToolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -59,6 +64,10 @@ public class InformacionCarnetFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
+
+        barcodeView = view.findViewById(R.id.barcodeViewCarnet);
+        scanQRHelper = new ScanQRHelper(this, barcodeView);
+
         toolbar = view.findViewById(R.id.topAppBar);
         toolbar.setTitleCentered(true);
         drawerLayout = view.findViewById(R.id.informacionCarnetDrawerLayout);
@@ -99,7 +108,8 @@ public class InformacionCarnetFragment extends Fragment {
         scanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scanearQR(view);
+                barcodeView.setVisibility(View.VISIBLE);
+                scanQRHelper.startScan();
             }
         });
 

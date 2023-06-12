@@ -50,4 +50,9 @@
     <string name="Espacios">Espacios:</string>
     <string name="Ponente">Ponente:</string>
 
+    <string name="CicloEscolarEvento">Ciclo Escolar:</string>
+    <string name="FechaInicio">Fecha Inicio:</string>
+    <string name="FechaFin">Fecha Fin:</string>
+
+
 </resources>

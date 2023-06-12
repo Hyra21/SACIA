@@ -26,11 +26,13 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
+import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.adapters.Carnet_rwAdapter;
 import com.alucintech.saci.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,6 +46,8 @@ import java.util.Date;
 public class ConsultaCarnetFragment extends Fragment {
 
     ArrayList<Carnet> carnets = new ArrayList<>();
+    private ScanQRHelper scanQRHelper;
+    DecoratedBarcodeView barcodeView;
     int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
     String matriculaAlumno="", carnetsCompletos="", estadoCarnet="";
     ImageButton btnRegresar, btnScanner;
@@ -100,6 +104,10 @@ public class ConsultaCarnetFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rwCarnet);
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);
+
+        barcodeView = view.findViewById(R.id.barcodeView);
+        scanQRHelper = new ScanQRHelper(this, barcodeView);
+
         vista = view;
         navController = Navigation.findNavController(view);
         new Task().execute();
@@ -144,7 +152,8 @@ public class ConsultaCarnetFragment extends Fragment {
         btnScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scanearQR(view);
+                barcodeView.setVisibility(View.VISIBLE);
+                scanQRHelper.startScan();
             }
         });
 

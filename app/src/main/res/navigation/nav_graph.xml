@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/informacionActividadFragment">
+    app:startDestination="@id/inicioFragment">
 
     <fragment
         android:id="@+id/inicioFragment"
@@ -98,6 +98,7 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"/>
+
     </fragment>
     <fragment
         android:id="@+id/informacionCarnetFragment"
@@ -118,6 +119,10 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_informacionCarnetFragment_to_inicioFragment2"
+            app:destination="@id/inicioFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/informacionActividadFragment"

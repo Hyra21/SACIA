@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,9 +28,11 @@ import android.widget.Toast;
 import com.alucintech.saci.R;
 import com.alucintech.saci.adapters.Actividad_rwAdapter;
 import com.alucintech.saci.adapters.Carnet_rwAdapter;
+import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Actividades;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -41,6 +44,8 @@ import java.util.Base64;
 public class ConsultaActividadesFragment extends Fragment {
 
     ArrayList<Actividades> actividades = new ArrayList<>();
+    private ScanQRHelper scanQRHelper;
+    DecoratedBarcodeView barcodeView;
     String  codigoProgramaEducativo;
     MaterialToolbar toolbar;
     DrawerLayout drawerLayout;
@@ -48,12 +53,15 @@ public class ConsultaActividadesFragment extends Fragment {
     ImageButton imgbtRegresar, imgbtScanner;
     NavController navController;
     RecyclerView recyclerView;
+    int[] idsActividad;
+    Boolean flag = false;
 
     class Task extends AsyncTask<View, View, View> {
 
         @Override
         protected View doInBackground(View... views) {
             buscarActividadProgramaEducativo();
+            buscarActividades(idsActividad);
             return null;
         }
         //Aquí crearemos la vista de la actividades
@@ -77,6 +85,10 @@ public class ConsultaActividadesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
+
+        barcodeView = view.findViewById(R.id.barcodeViewActividades);
+        scanQRHelper = new ScanQRHelper(this, barcodeView);
+
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.actividadesDrawerLayout);
         navigationView = view.findViewById(R.id.nwConsultaActividades);
@@ -95,7 +107,8 @@ public class ConsultaActividadesFragment extends Fragment {
         imgbtScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scanearQR(view);
+                barcodeView.setVisibility(View.VISIBLE);
+                scanQRHelper.startScan();
             }
         });
 
@@ -150,28 +163,34 @@ public class ConsultaActividadesFragment extends Fragment {
     }
 
     public void buscarActividadProgramaEducativo(){
-        int[] listaAfin = new int[0];
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, idActividad FROM afinprogramaseducativos");
 
+            resultSet.last();
+            int rowCount = resultSet.getRow();
+            resultSet.beforeFirst();
+
+            idsActividad = new int[rowCount];
             int i = 0;
             while (resultSet.next()){
                 if(resultSet.getString(1).equals(codigoProgramaEducativo)){
-                    listaAfin[i] = resultSet.getInt(2);
+                    idsActividad[i] = resultSet.getInt(2);
+
                     i++;
                 }
             }
-            buscarActividades(listaAfin);
+
             connection.close();
         } catch (Exception e){
 
         }
     }
 
-    public void buscarActividades(int[] listaAfin){
+    public void buscarActividades(int[] idsActividad){
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -179,12 +198,12 @@ public class ConsultaActividadesFragment extends Fragment {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT idActividad, nombreActividad, descripcionActividad, tipoActividad, fechaActividad, horarioInicioActividad, " +
                     "horarioFinActividad, direccionActividad, espaciosDisponiblesActividad, modalidadActividad, enlaceVirtual, imagenActividad, idEvento, " +
-                    "numEmpleadoAdministradorActividad, ponenteActividad FROM actividad");
+                    "numEmpleadoAdministradorActividad, ponenteActividad, estadoActividad FROM actividad");
 
             while (resultSet.next()){
-                for(int i=0; i< listaAfin.length;i++){
-                    if(resultSet.getInt(1) == listaAfin[i]){
-
+                for(int i=0; i<= idsActividad.length;i++){
+                    if(resultSet.getInt(1) == idsActividad[i]){
+                        flag = true;
                         int id = resultSet.getInt(1);
                         String nombreActividad = resultSet.getString(2);
                         String descripcionActividad = resultSet.getString(3);
@@ -197,18 +216,19 @@ public class ConsultaActividadesFragment extends Fragment {
                         String modalidadActividad = resultSet.getString(10);
                         String enlaceVirtual = resultSet.getString(11);
                         String imagenActividad = android.util.Base64.encodeToString(resultSet.getString(12).getBytes(), android.util.Base64.DEFAULT);
-                        String ponenteActividad = resultSet.getString(13);
-                        int idEvento = resultSet.getInt(14);
-                        int numEmpleadoAdministrador = resultSet.getInt(15);
+                        String ponenteActividad = resultSet.getString(15);
+                        int idEvento = resultSet.getInt(13);
+                        int numEmpleadoAdministrador = resultSet.getInt(14);
+                        String estadoActividad = resultSet.getString(16);
 
                         actividades.add(new Actividades(id,nombreActividad,descripcionActividad,tipoActividad,fechaActividad,horarioInicio,horarioFin,lugarActividad,
-                                espaciosDisponibles,modalidadActividad,enlaceVirtual,imagenActividad,ponenteActividad,idEvento,numEmpleadoAdministrador));
+                                espaciosDisponibles,modalidadActividad,enlaceVirtual,imagenActividad,ponenteActividad,idEvento,numEmpleadoAdministrador,estadoActividad));
                     }
                 }
             }
             connection.close();
         }catch (Exception e){
-
+            Log.d(e.toString(),"falla");
         }
     }
 

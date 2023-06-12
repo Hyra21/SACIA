@@ -16,9 +16,11 @@ public class Actividades {
     String ponenteActividad;
     int idEvento;
     int numEmpleadoAdministrador;
+    String estadoActividad;
 
     public Actividades(int id, String nombreActividad, String descripcionActividad, String tipoActividad, String fechaActividad, String horarioInicio,
-                       String horarioFin, String lugarActividad, int espaciosDisponibles, String modalidadActividad, String enlaceVirtual, String imagenActividad, String ponenteActividad, int idEvento, int numEmpleadoAdministrador) {
+                       String horarioFin, String lugarActividad, int espaciosDisponibles, String modalidadActividad, String enlaceVirtual,
+                       String imagenActividad, String ponenteActividad, int idEvento, int numEmpleadoAdministrador, String estadoActividad) {
         this.id = id;
         this.nombreActividad = nombreActividad;
         this.descripcionActividad = descripcionActividad;
@@ -34,6 +36,7 @@ public class Actividades {
         this.ponenteActividad = ponenteActividad;
         this.idEvento = idEvento;
         this.numEmpleadoAdministrador = numEmpleadoAdministrador;
+        this.estadoActividad = estadoActividad;
     }
 
     public int getId() {
@@ -94,5 +97,9 @@ public class Actividades {
 
     public int getNumEmpleadoAdministrador() {
         return numEmpleadoAdministrador;
+    }
+
+    public String getEstadoActividad(){
+        return  estadoActividad;
     }
 }
