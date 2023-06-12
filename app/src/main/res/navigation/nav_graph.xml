@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/informacionActividadFragment"
-        android:name="com.alucintech.saci.informacionActividadFragment"
+        android:name="com.alucintech.saci.fragments.informacionActividadFragment"
         android:label="fragment_informacion_actividad"
         tools:layout="@layout/fragment_informacion_actividad" >
         <action
