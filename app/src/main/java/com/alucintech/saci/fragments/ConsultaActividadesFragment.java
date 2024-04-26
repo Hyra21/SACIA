@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.alucintech.saci.ConnectionClass.ConnectionClass;
 import com.alucintech.saci.R;
 import com.alucintech.saci.adapters.Actividad_rwAdapter;
 import com.alucintech.saci.adapters.Carnet_rwAdapter;
@@ -42,7 +43,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 public class ConsultaActividadesFragment extends Fragment {
-
+    ConnectionClass connectionClass;
+    Connection connection;
     ArrayList<Actividades> actividades = new ArrayList<>();
     private ScanQRHelper scanQRHelper;
     DecoratedBarcodeView barcodeView;
@@ -84,8 +86,8 @@ public class ConsultaActividadesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        connectionClass = new ConnectionClass();
         cargarPreferencias();
-
         barcodeView = view.findViewById(R.id.barcodeViewActividades);
         scanQRHelper = new ScanQRHelper(this, barcodeView);
 
@@ -165,8 +167,7 @@ public class ConsultaActividadesFragment extends Fragment {
     public void buscarActividadProgramaEducativo(){
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, idActividad FROM afinprogramaseducativos");
 
@@ -193,8 +194,7 @@ public class ConsultaActividadesFragment extends Fragment {
     public void buscarActividades(int[] idsActividad){
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT idActividad, nombreActividad, descripcionActividad, tipoActividad, fechaActividad, horarioInicioActividad, " +
                     "horarioFinActividad, direccionActividad, espaciosDisponiblesActividad, modalidadActividad, enlaceVirtual, imagenActividad, idEvento, " +

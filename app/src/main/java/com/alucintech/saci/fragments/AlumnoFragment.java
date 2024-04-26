@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alucintech.saci.ConnectionClass.ConnectionClass;
 import com.alucintech.saci.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -40,7 +41,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AlumnoFragment extends Fragment {
-
     TextView nombreAlumno, nombrePrograma;
     Button btnCarnets, btnActividades;
     String matricula="", nomAlumno="", nomPrograma="", apeMaterno="", apePaterno="";
@@ -92,7 +92,7 @@ public class AlumnoFragment extends Fragment {
 
         navigation = Navigation.findNavController(view);
 
-        showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");
+        //showNotification(getContext(),"SACI", "Bienvenido alumno al sistema administrador del carnet institucional","https://ingenieria.mxl.uabc.mx/");
         btnCarnets = view.findViewById(R.id.btnCarnets);
         btnActividades = view.findViewById(R.id.btnActividades);
 

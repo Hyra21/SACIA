@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alucintech.saci.ConnectionClass.ConnectionClass;
 import com.alucintech.saci.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -27,6 +28,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class InicioFragment extends Fragment {
+    ConnectionClass connectionClass;
+    Connection connection;
     TextInputEditText Correo , Contrasena;
     Button IniSesion;
     Boolean CorreoEncontrado=false, ContraEncontrada=false;
@@ -76,6 +79,7 @@ public class InicioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if(cargarPreferencias()!=true){
+            connectionClass = new ConnectionClass();
             IniSesion = view.findViewById(R.id.buttonInicioSesion);
             Correo = view.findViewById(R.id.tplCorreo);
             Contrasena = view.findViewById(R.id.tplContrasena);
@@ -153,8 +157,7 @@ public class InicioFragment extends Fragment {
         String CorreoS=Correo.getText().toString(), ContrasenaS=Contrasena.getText().toString();
 
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
 
             //Query para  obtener la tabla de usuarios
@@ -181,8 +184,7 @@ public class InicioFragment extends Fragment {
 
     private void buscarInformacionAlumno(String CorreoS){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
 
             //Query para obtener las tabla que identifican a alumno

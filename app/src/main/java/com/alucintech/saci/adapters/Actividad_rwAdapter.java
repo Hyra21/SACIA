@@ -108,7 +108,6 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
             twHorarioActividad = itemView.findViewById(R.id.twHorarioActividad);
             twModalidadActividad = itemView.findViewById(R.id.twModalidad);
             imgbtLink = itemView.findViewById(R.id.imgbtLink);
-
         }
 
 

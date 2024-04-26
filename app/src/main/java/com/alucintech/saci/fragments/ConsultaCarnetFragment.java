@@ -26,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
+import com.alucintech.saci.ConnectionClass.ConnectionClass;
 import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.adapters.Carnet_rwAdapter;
@@ -44,7 +45,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class ConsultaCarnetFragment extends Fragment {
-
+    ConnectionClass connectionClass;
+    Connection connection;
     ArrayList<Carnet> carnets = new ArrayList<>();
     private ScanQRHelper scanQRHelper;
     DecoratedBarcodeView barcodeView;
@@ -97,6 +99,7 @@ public class ConsultaCarnetFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        connectionClass = new ConnectionClass();
         cargarPreferencias();
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.carnetDrawerLayout);
@@ -190,8 +193,7 @@ public class ConsultaCarnetFragment extends Fragment {
     //Metodo para obtener los carnets del semestre actual y los carnets de toda la carrera del alumno
     private void carnetsActuales(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT matriculaAlumno, numcarnetSemestre, numCarnetsCarrera FROM alumno");
             while (resultSet.next()){
@@ -212,8 +214,7 @@ public class ConsultaCarnetFragment extends Fragment {
     //Metodo para obtener el ultimo folio generado y generar uno nuevo para el carnet
     private void folioActual(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT numFolio FROM carnet");
             while (resultSet.next()){
@@ -229,8 +230,7 @@ public class ConsultaCarnetFragment extends Fragment {
     //Metodo para obtener el ultimo carnet generado del alumno
     private void carnetActual(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT matriculaAlumno, estadoCarnet, codigoCarnet FROM carnet");
 
@@ -250,8 +250,7 @@ public class ConsultaCarnetFragment extends Fragment {
     private void generarCarnet(){
         try{
             folioActual();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             int numeroCarnets = numCarnetCarrera + numCarnetSemestre;
             int nuevaClave;
@@ -290,8 +289,7 @@ public class ConsultaCarnetFragment extends Fragment {
 
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.69:3307/sacibd", "HYRA99", "root");
+            connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT numFolio, numeroSellosCarnet, cicloEscolarCarnet, fechaCreacionCarnet, matriculaAlumno, estadoCarnet, codigoCarnet FROM carnet");
 
