@@ -41,6 +41,7 @@
     <string name="Clave">Clave de Asignatura:</string>
 
     <string name="NombreActividad">Nombre Actividad:</string>
+    <string name="NombreEvento">Nombre Evento:</string>
     <string name="Evento">Evento:</string>
     <string name="TipoActividad">Tipo:</string>
     <string name="FechaActividad">Fecha:</string>
@@ -53,6 +54,6 @@
     <string name="CicloEscolarEvento">Ciclo Escolar:</string>
     <string name="FechaInicio">Fecha Inicio:</string>
     <string name="FechaFin">Fecha Fin:</string>
-
+    <string name="DescripcionEvento">Descripción:</string>
 
 </resources>
