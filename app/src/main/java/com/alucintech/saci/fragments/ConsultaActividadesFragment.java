@@ -173,7 +173,7 @@ public class ConsultaActividadesFragment extends Fragment {
         try {
             connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT codigoProgramaEducativoAlumno, idActividad,  FROM afinprogramaseducativos WHERE codigoProgramaEducativoAlumno="+codigoProgramaEducativo);
+            ResultSet resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, idActividad FROM afinprogramaseducativos  WHERE codigoProgramaEducativo="+codigoProgramaEducativo);
 
             resultSet.last();
             int rowCount = resultSet.getRow();
