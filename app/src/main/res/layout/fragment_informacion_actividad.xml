@@ -64,7 +64,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cwEvento"
+                        android:id="@+id/cwActividad"
                         android:layout_width="350dp"
                         android:layout_height="75dp"
                         android:layout_row="0"

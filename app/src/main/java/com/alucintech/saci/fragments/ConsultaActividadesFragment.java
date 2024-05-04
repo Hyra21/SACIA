@@ -192,6 +192,9 @@ public class ConsultaActividadesFragment extends Fragment {
     }
 
     public void buscarActividades(int[] idsActividad){
+        int id, espaciosDisponibles,idEvento,numEmpleadoAdministrador;
+        String nombreActividad, descripcionActividad, tipoActividad, fechaActividad, horarioInicio, horarioFin, lugarActividad;
+        String modalidadActividad, enlaceVirtual, imagenActividad, ponenteActividad, estadoActividad;
 
         try {
             connection = connectionClass.CONN();
@@ -200,31 +203,34 @@ public class ConsultaActividadesFragment extends Fragment {
                     "horarioFinActividad, direccionActividad, espaciosDisponiblesActividad, modalidadActividad, enlaceVirtual, imagenActividad, idEvento, " +
                     "numEmpleadoAdministradorActividad, ponenteActividad, estadoActividad FROM actividad");
 
+            int i = 0;
             while (resultSet.next()){
-                for(int i=0; i<= idsActividad.length;i++){
-                    if(resultSet.getInt(1) == idsActividad[i]){
-                        flag = true;
-                        int id = resultSet.getInt(1);
-                        String nombreActividad = resultSet.getString(2);
-                        String descripcionActividad = resultSet.getString(3);
-                        String tipoActividad = resultSet.getString(4);
-                        String fechaActividad = resultSet.getString(5);
-                        String horarioInicio = resultSet.getString(6);
-                        String horarioFin = resultSet.getString(7);
-                        String lugarActividad = resultSet.getString(8);
-                        int espaciosDisponibles = resultSet.getInt(9);
-                        String modalidadActividad = resultSet.getString(10);
-                        String enlaceVirtual = resultSet.getString(11);
-                        String imagenActividad = android.util.Base64.encodeToString(resultSet.getString(12).getBytes(), android.util.Base64.DEFAULT);
-                        String ponenteActividad = resultSet.getString(15);
-                        int idEvento = resultSet.getInt(13);
-                        int numEmpleadoAdministrador = resultSet.getInt(14);
-                        String estadoActividad = resultSet.getString(16);
 
-                        actividades.add(new Actividades(id,nombreActividad,descripcionActividad,tipoActividad,fechaActividad,horarioInicio,horarioFin,lugarActividad,
-                                espaciosDisponibles,modalidadActividad,enlaceVirtual,imagenActividad,ponenteActividad,idEvento,numEmpleadoAdministrador,estadoActividad));
-                    }
+                if(resultSet.getInt(1) == idsActividad[i]){
+                    Log.e("Actividades", String.valueOf(idsActividad[i]));
+
+                    id = resultSet.getInt(1);
+                    nombreActividad = resultSet.getString(2);
+                    descripcionActividad = resultSet.getString(3);
+                    tipoActividad = resultSet.getString(4);
+                    fechaActividad = resultSet.getString(5);
+                    horarioInicio = resultSet.getString(6);
+                    horarioFin = resultSet.getString(7);
+                    lugarActividad = resultSet.getString(8);
+                    espaciosDisponibles = resultSet.getInt(9);
+                    modalidadActividad = resultSet.getString(10);
+                    enlaceVirtual = resultSet.getString(11);
+                    imagenActividad = android.util.Base64.encodeToString(resultSet.getString(12).getBytes(), android.util.Base64.DEFAULT);
+                    ponenteActividad = resultSet.getString(15);
+                    idEvento = resultSet.getInt(13);
+                    numEmpleadoAdministrador = resultSet.getInt(14);
+                    estadoActividad = resultSet.getString(16);
+
+                    actividades.add(new Actividades(id,nombreActividad,descripcionActividad,tipoActividad,fechaActividad,horarioInicio,horarioFin,lugarActividad,
+                            espaciosDisponibles,modalidadActividad,enlaceVirtual,imagenActividad,ponenteActividad,idEvento,numEmpleadoAdministrador,estadoActividad));
+                    i++;
                 }
+
             }
             connection.close();
         }catch (Exception e){

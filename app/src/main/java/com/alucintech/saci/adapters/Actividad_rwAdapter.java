@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
     @NonNull
     @Override
     public Actividad_rwAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.actividad, parent, false);
         return new Actividad_rwAdapter.MyViewHolder(view);
@@ -61,7 +63,7 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
         holder.twFechaActividad.setText(actividades.get(position).getFechaActividad());
         holder.twHorarioActividad.setText(actividades.get(position).getHorarioInicio() + " - " + actividades.get(position).getHorarioFin());
         holder.twModalidadActividad.setText(actividades.get(position).getModalidadActividad());
-        if(actividades.get(pos).getModalidadActividad().equals("Virtual")){
+        if(actividades.get(position).getModalidadActividad().equals("Virtual")){
             holder.imgbtLink.setVisibility(View.VISIBLE);
             holder.imgbtLink.setClickable(true);
         }
@@ -86,6 +88,7 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
 
     @Override
     public int getItemCount() {
+        Log.e("CantidadActividades", String.valueOf(actividades.size()));
         return actividades.size();
     }
 

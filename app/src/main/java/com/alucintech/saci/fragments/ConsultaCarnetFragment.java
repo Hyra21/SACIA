@@ -51,7 +51,8 @@ public class ConsultaCarnetFragment extends Fragment {
     private ScanQRHelper scanQRHelper;
     DecoratedBarcodeView barcodeView;
     int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
-    String matriculaAlumno="", carnetsCompletos="", estadoCarnet="";
+    String matriculaAlumno="", carnetsCompletos="";
+    String estadoCarnet="";
     ImageButton btnRegresar, btnScanner;
     NavController navController;
     RecyclerView recyclerView;

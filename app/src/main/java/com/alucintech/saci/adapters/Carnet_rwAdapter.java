@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,7 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
     // Este simplemente nos regresa la cantidad de carnets que tiene el alumno
     @Override
     public int getItemCount() {
+        Log.e("CantidadCarnets", String.valueOf(carnets.size()));
         return carnets.size();
     }
 
