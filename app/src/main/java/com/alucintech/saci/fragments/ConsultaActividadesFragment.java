@@ -56,6 +56,7 @@ public class ConsultaActividadesFragment extends Fragment {
     NavController navController;
     RecyclerView recyclerView;
     int[] idsActividad;
+    int idEvento;
     Boolean flag = false;
 
     class Task extends AsyncTask<View, View, View> {
@@ -144,12 +145,15 @@ public class ConsultaActividadesFragment extends Fragment {
         });
 
     }
-
+    //Obtiene los datos de los archivos
+    //Se obtiene el codigo del programa educativo del alumno y
+    // el id del evento al que pertenecen las actividades que se mostrarán
     public void cargarPreferencias(){
         SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno", Context.MODE_PRIVATE);
+        SharedPreferences preferencesEvento = getActivity().getSharedPreferences("eventoTemp", Context.MODE_PRIVATE);
 
         codigoProgramaEducativo = preferences.getString("codigoProgramaEducativo","No existe");
-
+        idEvento = preferencesEvento.getInt("idEvento",0);
     }
 
     public void borrarPreferencias(){
@@ -169,7 +173,7 @@ public class ConsultaActividadesFragment extends Fragment {
         try {
             connection = connectionClass.CONN();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT codigoProgramaEducativo, idActividad FROM afinprogramaseducativos");
+            ResultSet resultSet = statement.executeQuery("SELECT codigoProgramaEducativoAlumno, idActividad,  FROM afinprogramaseducativos WHERE codigoProgramaEducativoAlumno="+codigoProgramaEducativo);
 
             resultSet.last();
             int rowCount = resultSet.getRow();

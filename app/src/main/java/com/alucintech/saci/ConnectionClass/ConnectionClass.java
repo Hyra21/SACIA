@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class ConnectionClass {
     protected static String db = "sacibd";
-    protected static String ip = "192.168.1.67";
+    protected static String ip = "192.168.1.75";
     protected static String port = "3306";
-    protected static String username = "admin";
-    protected static String password = "admin";
+    protected static String username = "root";
+    protected static String password = "root";
 
     public Connection CONN() {
         Connection conn = null;

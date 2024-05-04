@@ -38,12 +38,8 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left" />
         <action
-            android:id="@+id/action_alumnoFragment_to_consultaActividades"
-            app:destination="@id/consultaActividades"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"/>
+            android:id="@+id/action_alumnoFragment_to_consultaEventosFragment"
+            app:destination="@id/consultaEventosFragment" />
     </fragment>
     <fragment
         android:id="@+id/consultaCarnet"
@@ -143,5 +139,20 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/consultaEventosFragment"
+        android:name="com.alucintech.saci.fragments.ConsultaEventosFragment"
+        android:label="fragment_consulta_evento"
+        tools:layout="@layout/fragment_consulta_evento" >
+        <action
+            android:id="@+id/action_consultaEventosFragment_to_consultaActividades"
+            app:destination="@id/consultaActividades" />
+        <action
+            android:id="@+id/action_consultaEventosFragment_to_alumnoFragment"
+            app:destination="@id/alumnoFragment" />
+        <action
+            android:id="@+id/action_consultaEventosFragment_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
     </fragment>
 </navigation>

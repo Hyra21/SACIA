@@ -136,7 +136,7 @@ public class AlumnoFragment extends Fragment {
         btnActividades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigation.navigate(R.id.action_alumnoFragment_to_consultaActividades);
+                navigation.navigate(R.id.action_alumnoFragment_to_consultaEventosFragment);
             }
         });
     }
