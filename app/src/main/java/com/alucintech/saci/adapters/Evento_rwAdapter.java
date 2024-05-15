@@ -61,6 +61,7 @@ public class Evento_rwAdapter extends RecyclerView.Adapter<Evento_rwAdapter.MyVi
         holder.cwEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
                 guardarPreferenciasEvento(pos);
                 NavController navController = Navigation.findNavController((Activity) context, R.id.nav_host_fragment);
                 navController.navigate(R.id.action_consultaEventosFragment_to_consultaActividades);

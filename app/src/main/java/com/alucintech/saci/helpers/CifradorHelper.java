@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class CifradorHelper {
 
     private static final String ALGORITMO = "AES";
-    private static final String CLAVE_SECRETA = "clavecimarnetSACI7892234@"; // La clave debe tener 16, 24 o 32 bytes para AES
+    private static final String CLAVE_SECRETA = "clavecimarnetSACI789223@"; // La clave debe tener 16, 24 o 32 bytes para AES
 
     public static String cifrar(String texto) throws Exception {
         SecretKeySpec clave = new SecretKeySpec(CLAVE_SECRETA.getBytes(), ALGORITMO);

@@ -54,11 +54,6 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
 
         int pos = position;
         holder.mtwNombreActividad.setText(actividades.get(position).getNombreActividad());
-
-        byte[] imagenDecodificada = android.util.Base64.decode(actividades.get(position).getImagenActividad(), android.util.Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imagenDecodificada, 0, imagenDecodificada.length);
-        holder.imwActividad.setImageBitmap(bitmap);
-
         holder.twTipoActividad.setText(actividades.get(position).getTipoActividad());
         holder.twFechaActividad.setText(actividades.get(position).getFechaActividad());
         holder.twHorarioActividad.setText(actividades.get(position).getHorarioInicio() + " - " + actividades.get(position).getHorarioFin());
@@ -107,7 +102,7 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
             mtwNombreActividad = itemView.findViewById(R.id.mtwNombreActividad);
             imwActividad = itemView.findViewById(R.id.imwActividad);
             twTipoActividad = itemView.findViewById(R.id.twTipoActividad);
-            twFechaActividad = itemView.findViewById(R.id.twHorarioActividad);
+            twFechaActividad = itemView.findViewById(R.id.twFechaActividad);
             twHorarioActividad = itemView.findViewById(R.id.twHorarioActividad);
             twModalidadActividad = itemView.findViewById(R.id.twModalidad);
             imgbtLink = itemView.findViewById(R.id.imgbtLink);

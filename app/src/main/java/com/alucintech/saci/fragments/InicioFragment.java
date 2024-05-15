@@ -114,7 +114,7 @@ public class InicioFragment extends Fragment {
     private void guardarPreferencias(){
 
         //Linea de codigo para crear el archivo credencialesAlumno.xml
-            SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno",Context.MODE_PRIVATE);
+        SharedPreferences preferences = getActivity().getSharedPreferences("credencialesAlumno",Context.MODE_PRIVATE);
 
         //Aqui almacenamos las credenciales obtenidas de los inputText de correo y contrasena en distintos Strings
         String usuario = Correo.getText().toString();

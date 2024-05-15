@@ -1,6 +1,8 @@
 package com.alucintech.saci.helpers;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 
@@ -8,11 +10,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.alucintech.saci.ConnectionClass.ConnectionClass;
 import com.google.zxing.ResultPoint;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
+import com.alucintech.saci.helpers.CifradorHelper;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 public class ScanQRHelper {
@@ -21,7 +29,10 @@ public class ScanQRHelper {
 
     private Fragment fragment;
     private DecoratedBarcodeView barcodeView;
-
+    String qrCode;
+    String matricula;
+    Connection connection;
+    ConnectionClass connectionClass;
     public ScanQRHelper(DecoratedBarcodeView barcodeView) {
         this.barcodeView = barcodeView;
     }
@@ -30,9 +41,13 @@ public class ScanQRHelper {
         @Override
         public void barcodeResult(BarcodeResult result) {
             // Manejar el resultado del escaneo del código QR
-            String qrCode = result.getText();
+            qrCode = result.getText();
             Toast.makeText(fragment.getActivity(), "Código QR escaneado: " + qrCode, Toast.LENGTH_SHORT).show();
-
+            try {
+                cargarDatosActividad();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             // Reiniciar la cámara para escanear más códigos QR
             barcodeView.decodeSingle(this);
         }
@@ -83,5 +98,65 @@ public class ScanQRHelper {
                 Toast.makeText(fragment.requireActivity(), "El permiso de la cámara es necesario para escanear códigos QR", Toast.LENGTH_LONG).show();
             }
         }
+    }
+    private void guardarDatosActividad(){
+
+        //Linea de codigo para crear el archivo credencialesAlumno.xml
+        SharedPreferences preferences = fragment.getActivity().getSharedPreferences("datosActividad", Context.MODE_PRIVATE);
+
+        //Aqui editamos el archivo creado y le agregamos los datos
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("qrInicio", qrCode);
+
+        //Con este commit terminamos de almacenar el archivo en el sistema
+        editor.commit();
+    }
+    //Lectura del archivo para obtener las credenciales almacenadas
+    private void cargarDatosActividad() throws Exception {
+        String flag = "No existe";
+
+        //Linea de codigo para buscar el archivo credencialesAlumno.xml
+        SharedPreferences preferences = fragment.getActivity().getSharedPreferences("datosActividad", Context.MODE_PRIVATE);
+
+        //Aqui obtenemos el codigo de inicio almacenado, si no existen se guarda "No existe"
+        String qrIniciob = preferences.getString("qrInicio","No existe");
+
+        //Aqui se realiza la validacion de que existen las credenciales
+        if(qrIniciob.equals(flag)){
+            guardarDatosActividad();
+        }else{
+            //Se decifra el qr de inicio y el de fin
+            String codigo1 = CifradorHelper.descifrar(qrIniciob);
+            String codigo2 = CifradorHelper.descifrar(qrCode);
+            //Se obtiene el id de la actividad
+            String idActividad = codigo1;
+
+            //Valida si los códigos son de la misma actividad
+            if(codigo1.concat("asistio").compareTo(codigo2) == 0){
+
+                connection = connectionClass.CONN();
+                Statement statement = connection.createStatement();
+                //Obtiene la matrícula del alumno
+                cargarPreferencias();
+                //Obtiene el numero de folio del carnet
+                ResultSet resultSetFolio = statement.executeQuery("SELECT  numFolio FROM carnet where estadoCarnet = 'en Proceso' AND matriculaAlumno = "+matricula);
+                //Obtiene el id del sello
+                ResultSet resultSetidSello = statement.executeQuery("SELECT  idSello FROM sello where idActividad = "+idActividad);
+                //Se inserta el id de sello y el numero de folio en la tabla teiesello para completar el registro
+                statement.executeQuery("INSERT INTO tienesello (idSello, numFolioCarnet) VALUES " +
+                        "("+resultSetidSello.getString(0)+","+resultSetFolio.getString(0)+")");
+                borrarDatosActividad();
+            }
+        }
+    }
+    public void cargarPreferencias(){
+        SharedPreferences preferences = fragment.getActivity().getSharedPreferences("credencialesAlumno", Context.MODE_PRIVATE);
+        matricula = preferences.getString("matricula","No existe");
+    }
+    public void borrarDatosActividad(){
+        SharedPreferences preferences = fragment.getActivity().getSharedPreferences("datosActividad", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
     }
 }
