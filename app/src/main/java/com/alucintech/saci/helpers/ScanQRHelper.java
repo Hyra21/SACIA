@@ -20,7 +20,9 @@ import com.alucintech.saci.helpers.CifradorHelper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.List;
 
 public class ScanQRHelper {
@@ -130,6 +132,7 @@ public class ScanQRHelper {
             String codigo2 = CifradorHelper.descifrar(qrCode);
             //Se obtiene el id de la actividad
             String idActividad = codigo1;
+            validarHorario(idActividad);
 
             //Valida si los códigos son de la misma actividad
             if(codigo1.concat("asistio").compareTo(codigo2) == 0){
@@ -145,10 +148,40 @@ public class ScanQRHelper {
                 //Se inserta el id de sello y el numero de folio en la tabla teiesello para completar el registro
                 statement.executeQuery("INSERT INTO tienesello (idSello, numFolioCarnet) VALUES " +
                         "("+resultSetidSello.getString(0)+","+resultSetFolio.getString(0)+")");
+                connection.close();
                 borrarDatosActividad();
             }
         }
     }
+    public boolean validarHorario(String idActividad) throws SQLException {
+        boolean error = false;
+        connection = connectionClass.CONN();
+        Statement statement = connection.createStatement();
+        // Obtener instancia de Calendar
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        Calendar calendar3 = Calendar.getInstance();
+        // Obtener la fecha del sistema
+        calendar.get(Calendar.DATE);
+        calendar.get(Calendar.MINUTE);
+        calendar.get(Calendar.HOUR_OF_DAY);
+
+        ResultSet resultHorario = statement.executeQuery("SELECT  horarioInicioActividad, horarioFinActividad, fechaActividad FROM actividad where idActividad = "+idActividad);
+        calendar2.set(Calendar.HOUR_OF_DAY,resultHorario.getTime(1).getHours());
+        calendar2.set(Calendar.MINUTE,resultHorario.getTime(1).getMinutes());
+        calendar2.set(Calendar.DATE,resultHorario.getDate(3).getDate());
+
+        calendar3.set(Calendar.HOUR_OF_DAY,resultHorario.getTime(2).getHours());
+        calendar3.set(Calendar.MINUTE,resultHorario.getTime(2).getMinutes());
+        calendar3.set(Calendar.DATE,resultHorario.getDate(3).getDate());
+
+        if(calendar.before(calendar2) || calendar.after(calendar3)) {
+            error = true;
+        }
+        connection.close();
+        return error;
+    }
+
     public void cargarPreferencias(){
         SharedPreferences preferences = fragment.getActivity().getSharedPreferences("credencialesAlumno", Context.MODE_PRIVATE);
         matricula = preferences.getString("matricula","No existe");
