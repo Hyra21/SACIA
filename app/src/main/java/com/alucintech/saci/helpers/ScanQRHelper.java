@@ -47,7 +47,13 @@ public class ScanQRHelper {
             // Manejar el resultado del escaneo del código QR
 
             qrCode = result.getText();
-            Log.e("Empezo scanner", String.valueOf(qrCode));
+            String des = null;
+            try {
+                des = CifradorHelper.descifrar(qrCode);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            Log.e("Empezo scanner", String.valueOf(des));
             Toast.makeText(fragment.getActivity(), "Código QR escaneado: " + qrCode, Toast.LENGTH_SHORT).show();
             try {
                 cargarDatosActividad();
@@ -60,7 +66,7 @@ public class ScanQRHelper {
             resultIntent.putExtra("QR_CONTENT", qrCode);
             fragment.getActivity().setResult(AppCompatActivity.RESULT_OK, resultIntent);
             //fragment.getActivity().finish(); // Cerrar la actividad
-            Log.e("Empezo scanner", String.valueOf(qrCode));
+
             // Si deseas reiniciar la cámara para escanear más códigos QR en lugar de cerrar la actividad
             barcodeView.decodeSingle(this);
         }
@@ -137,16 +143,18 @@ public class ScanQRHelper {
         //Aqui se realiza la validacion de que existen las credenciales
         if(qrIniciob.equals(flag)){
             guardarDatosActividad();
+            Log.e("Termino scanner", String.valueOf(qrCode));
         }else{
             //Se decifra el qr de inicio y el de fin
             String codigo1 = CifradorHelper.descifrar(qrIniciob);
             String codigo2 = CifradorHelper.descifrar(qrCode);
+            Log.e("Codigo descifrado", String.valueOf(codigo2));
             //Se obtiene el id de la actividad
             String idActividad = codigo1;
             validarHorario(idActividad);
 
             //Valida si los códigos son de la misma actividad
-            if(codigo1.concat("asistio").compareTo(codigo2) == 0){
+            if(codigo1.concat("asistio").compareTo(qrCode) == 0){
 
                 connection = connectionClass.CONN();
                 Statement statement = connection.createStatement();
