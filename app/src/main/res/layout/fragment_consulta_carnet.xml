@@ -98,12 +98,12 @@
         android:layout_gravity="start"
         app:menu="@menu/menu_alumno"
         />
+
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/barcodeView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

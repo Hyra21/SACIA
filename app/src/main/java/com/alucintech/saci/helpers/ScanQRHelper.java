@@ -2,10 +2,13 @@ package com.alucintech.saci.helpers;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -28,7 +31,6 @@ import java.util.List;
 public class ScanQRHelper {
 
     private static final int CAMERA_PERMISSION_REQUEST = 123;
-
     private Fragment fragment;
     private DecoratedBarcodeView barcodeView;
     String qrCode;
@@ -43,14 +45,23 @@ public class ScanQRHelper {
         @Override
         public void barcodeResult(BarcodeResult result) {
             // Manejar el resultado del escaneo del código QR
+
             qrCode = result.getText();
+            Log.e("Empezo scanner", String.valueOf(qrCode));
             Toast.makeText(fragment.getActivity(), "Código QR escaneado: " + qrCode, Toast.LENGTH_SHORT).show();
             try {
                 cargarDatosActividad();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+
             }
-            // Reiniciar la cámara para escanear más códigos QR
+
+            // Enviar los datos escaneados a la actividad o fragmento que llamó
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("QR_CONTENT", qrCode);
+            fragment.getActivity().setResult(AppCompatActivity.RESULT_OK, resultIntent);
+            //fragment.getActivity().finish(); // Cerrar la actividad
+            Log.e("Empezo scanner", String.valueOf(qrCode));
+            // Si deseas reiniciar la cámara para escanear más códigos QR en lugar de cerrar la actividad
             barcodeView.decodeSingle(this);
         }
 
