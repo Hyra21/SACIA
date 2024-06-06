@@ -6,53 +6,36 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alucintech.saci.R;
-import com.alucintech.saci.activities.MostrarEvento;
-import com.alucintech.saci.adapters.Carnet_rwAdapter;
 import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Actividades;
+import com.budiyev.android.codescanner.CodeScannerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 public class informacionActividadFragment extends Fragment {
 
@@ -119,8 +102,8 @@ public class informacionActividadFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
 
-        barcodeView = view.findViewById(R.id.barcodeViewActividad);
-        scanQRHelper = new ScanQRHelper(this, barcodeView);
+        CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
+        scanQRHelper = new ScanQRHelper(this, scannerView);
 
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.informacionActividadDrawerLayout);
@@ -198,7 +181,7 @@ public class informacionActividadFragment extends Fragment {
         imgbtScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                barcodeView.setVisibility(View.VISIBLE);
+                scannerView.setVisibility(View.VISIBLE);
                 scanQRHelper.startScan();
             }
         });

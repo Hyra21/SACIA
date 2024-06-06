@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,17 +27,17 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-import com.alucintech.saci.ConnectionClass.ConnectionClass;
+import com.alucintech.saci.connection.ConnectionClass;
 import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.adapters.Carnet_rwAdapter;
 import com.alucintech.saci.R;
+import com.budiyev.android.codescanner.CodeScannerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -109,8 +110,8 @@ public class ConsultaCarnetFragment extends Fragment {
         btnRegresar = view.findViewById(R.id.imgbtRegresar);
         btnScanner = view.findViewById(R.id.imgbtScanner);
 
-        barcodeView = view.findViewById(R.id.barcodeView);
-        scanQRHelper = new ScanQRHelper(this, barcodeView);
+        CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
+        scanQRHelper = new ScanQRHelper(this, scannerView);
 
         vista = view;
         navController = Navigation.findNavController(view);
@@ -156,11 +157,24 @@ public class ConsultaCarnetFragment extends Fragment {
         btnScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                barcodeView.setVisibility(View.VISIBLE);
+                scannerView.setVisibility(View.VISIBLE);
+                final Fragment currentFragment = ConsultaCarnetFragment.this;
                 scanQRHelper.startScan();
+
             }
         });
 
+        getParentFragmentManager().setFragmentResultListener("SCAN_RESULT", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                if ("SCAN_RESULT".equals(requestKey)) {
+                    String qrContent = result.getString("QR_CONTENT");
+                    // Manejar el resultado del escaneo aquí
+                    scannerView.setVisibility(View.INVISIBLE);
+                    Log.d("Resultado SCAN", String.valueOf(result));
+                }
+            }
+        });
 
     }
 

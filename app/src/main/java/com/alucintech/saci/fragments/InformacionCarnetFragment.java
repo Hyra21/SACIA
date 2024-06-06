@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Carnet;
 import com.alucintech.saci.R;
+import com.budiyev.android.codescanner.CodeScannerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
@@ -50,9 +51,6 @@ public class InformacionCarnetFragment extends Fragment {
     int numFolio, claveCarnet, numCarnet;
     String nomAlumno, matricula, programa, ciclo, fecha;
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,8 +63,8 @@ public class InformacionCarnetFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         cargarPreferencias();
 
-        barcodeView = view.findViewById(R.id.barcodeViewCarnet);
-        scanQRHelper = new ScanQRHelper(this, barcodeView);
+        CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
+        scanQRHelper = new ScanQRHelper(this, scannerView);
 
         toolbar = view.findViewById(R.id.topAppBar);
         toolbar.setTitleCentered(true);
@@ -108,7 +106,7 @@ public class InformacionCarnetFragment extends Fragment {
         scanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                barcodeView.setVisibility(View.VISIBLE);
+                scannerView.setVisibility(View.VISIBLE);
                 scanQRHelper.startScan();
             }
         });

@@ -15,15 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alucintech.saci.ConnectionClass.ConnectionClass;
+import com.alucintech.saci.connection.ConnectionClass;
 import com.alucintech.saci.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 

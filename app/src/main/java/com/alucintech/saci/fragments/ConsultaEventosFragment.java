@@ -22,7 +22,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alucintech.saci.ConnectionClass.ConnectionClass;
+import com.alucintech.saci.connection.ConnectionClass;
 import com.alucintech.saci.R;
 import com.alucintech.saci.adapters.Evento_rwAdapter;
 import com.alucintech.saci.objects.Eventos;
@@ -31,7 +31,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;

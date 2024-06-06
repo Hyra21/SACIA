@@ -25,22 +25,20 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.alucintech.saci.ConnectionClass.ConnectionClass;
+import com.alucintech.saci.connection.ConnectionClass;
 import com.alucintech.saci.R;
 import com.alucintech.saci.adapters.Actividad_rwAdapter;
-import com.alucintech.saci.adapters.Carnet_rwAdapter;
 import com.alucintech.saci.helpers.ScanQRHelper;
 import com.alucintech.saci.objects.Actividades;
+import com.budiyev.android.codescanner.CodeScannerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Base64;
 
 public class ConsultaActividadesFragment extends Fragment {
     ConnectionClass connectionClass;
@@ -89,8 +87,8 @@ public class ConsultaActividadesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         connectionClass = new ConnectionClass();
         cargarPreferencias();
-        barcodeView = view.findViewById(R.id.barcodeViewActividades);
-        scanQRHelper = new ScanQRHelper(this, barcodeView);
+        CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
+        scanQRHelper = new ScanQRHelper(this, scannerView);
 
         toolbar = view.findViewById(R.id.topAppBar);
         drawerLayout = view.findViewById(R.id.actividadesDrawerLayout);
@@ -110,7 +108,7 @@ public class ConsultaActividadesFragment extends Fragment {
         imgbtScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                barcodeView.setVisibility(View.VISIBLE);
+                scannerView.setVisibility(View.VISIBLE);
                 scanQRHelper.startScan();
             }
         });

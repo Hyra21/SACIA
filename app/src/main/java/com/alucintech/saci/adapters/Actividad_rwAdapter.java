@@ -26,6 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alucintech.saci.R;
 import com.alucintech.saci.objects.Actividades;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -54,6 +57,12 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
 
         int pos = position;
         holder.mtwNombreActividad.setText(actividades.get(position).getNombreActividad());
+
+
+        byte[] imagenDecodificada = android.util.Base64.decode(actividades.get(position).getImagenActividad(), android.util.Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imagenDecodificada, 0, imagenDecodificada.length);
+        holder.imwActividad.setImageBitmap(bitmap);
+
         holder.twTipoActividad.setText(actividades.get(position).getTipoActividad());
         holder.twFechaActividad.setText(actividades.get(position).getFechaActividad());
         holder.twHorarioActividad.setText(actividades.get(position).getHorarioInicio() + " - " + actividades.get(position).getHorarioFin());
