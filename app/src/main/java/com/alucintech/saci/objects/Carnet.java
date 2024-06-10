@@ -47,4 +47,26 @@ public class Carnet {
     public int getClaveCarnet() {
         return claveCarnet;
     }
+
+    public void setNumFolio(int numFolio) {
+        this.numFolio = numFolio;
+    }
+
+    public void setNumeroSellosCarnet(int numeroSellosCarnet) {this.numeroSellosCarnet = numeroSellosCarnet;}
+
+    public void setCicloEscolarCarnet(String cicloEscolarCarnet) {this.cicloEscolarCarnet = cicloEscolarCarnet;}
+
+    public void setFechaCreacionCarnet(String fechaCreacionCarnet) {this.fechaCreacionCarnet = fechaCreacionCarnet;}
+
+    public void setMatriculaAlumno(int matriculaAlumno) {
+        this.matriculaAlumno = matriculaAlumno;
+    }
+
+    public void setEstadoCarnet(String estadoCarnet) {
+        this.estadoCarnet = estadoCarnet;
+    }
+
+    public void setClaveCarnet(int claveCarnet) {
+        this.claveCarnet = claveCarnet;
+    }
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +51,63 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
         int pos = position + 1;
         holder.twNumCarnet.setText("Carnet #"+ pos);
 
+        switch(carnets.get(position).getNumeroSellosCarnet()){
+            case 1:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 2:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 3:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 4:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 5:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 6:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 7:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello7.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+            case 8:
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello7.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                holder.btnSello8.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
+                break;
+        }
+
+
+        //holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
 
         if(carnets.get(position).getEstadoCarnet().equals("En Proceso")){
             holder.imageView.setImageResource(R.drawable.enproceso_carnet);

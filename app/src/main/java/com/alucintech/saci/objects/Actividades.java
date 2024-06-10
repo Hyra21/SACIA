@@ -12,7 +12,7 @@ public class Actividades {
     int espaciosDisponibles;
     String modalidadActividad;
     String enlaceVirtual;
-    String imagenActividad;
+    byte[] imagenActividad;
     String ponenteActividad;
     int idEvento;
     int numEmpleadoAdministrador;
@@ -20,7 +20,7 @@ public class Actividades {
 
     public Actividades(int id, String nombreActividad, String descripcionActividad, String tipoActividad, String fechaActividad, String horarioInicio,
                        String horarioFin, String lugarActividad, int espaciosDisponibles, String modalidadActividad, String enlaceVirtual,
-                       String imagenActividad, String ponenteActividad, int idEvento, int numEmpleadoAdministrador, String estadoActividad) {
+                       byte[] imagenActividad, String ponenteActividad, int idEvento, int numEmpleadoAdministrador, String estadoActividad) {
         this.id = id;
         this.nombreActividad = nombreActividad;
         this.descripcionActividad = descripcionActividad;
@@ -83,7 +83,7 @@ public class Actividades {
         return enlaceVirtual;
     }
 
-    public  String getImagenActividad(){
+    public  byte[] getImagenActividad(){
         return imagenActividad;
     }
 

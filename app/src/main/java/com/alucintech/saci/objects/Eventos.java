@@ -10,10 +10,10 @@ public class Eventos {
     String descripcionEvento;
     String estadoEvento;
     int numEmpleadoAdministrador;
-    String imagenEvento;
+    byte[] imagenEvento;
 
     public Eventos(int idEvento, String nombreEvento, String cicloEscolarEvento, String fechaInicioEvento, String fechaFinEvento,
-                   String descripcionEvento, String estadoEvento, int numEmpleadoAdministrador, String imagenEvento) {
+                   String descripcionEvento, String estadoEvento, int numEmpleadoAdministrador, byte[] imagenEvento) {
         this.idEvento = idEvento;
         this.nombreEvento = nombreEvento;
         this.cicloEscolarEvento = cicloEscolarEvento;
@@ -57,7 +57,8 @@ public class Eventos {
         return numEmpleadoAdministrador;
     }
 
-    public String getImagenEvento() {
+    public byte[] getImagenEvento() {
         return imagenEvento;
     }
+
 }

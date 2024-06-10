@@ -409,11 +409,16 @@
         android:layout_gravity="start"
         app:menu="@menu/menu_alumno"
         />
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/barcodeViewActividad"
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scanner_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
+        app:autoFocusButtonColor="@color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@color/white"
+        app:flashButtonVisible="true"
+        app:maskColor="#5E000000"
         />
 
 

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,9 +28,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alucintech.saci.R;
 import com.alucintech.saci.objects.Actividades;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -54,12 +59,10 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
 
     @Override
     public void onBindViewHolder(@NonNull Actividad_rwAdapter.MyViewHolder holder,@SuppressLint("RecyclerView") int position) {
-
         int pos = position;
         holder.mtwNombreActividad.setText(actividades.get(position).getNombreActividad());
 
-
-        byte[] imagenDecodificada = android.util.Base64.decode(actividades.get(position).getImagenActividad(), android.util.Base64.DEFAULT);
+        byte[] imagenDecodificada = actividades.get(position).getImagenActividad();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imagenDecodificada, 0, imagenDecodificada.length);
         holder.imwActividad.setImageBitmap(bitmap);
 
@@ -134,7 +137,7 @@ public class Actividad_rwAdapter extends RecyclerView.Adapter<Actividad_rwAdapte
         editor.putInt("espacios", actividades.get(pos).getEspaciosDisponibles());
         editor.putString("modalidad", actividades.get(pos).getModalidadActividad());
         editor.putString("enlace", actividades.get(pos).getEnlaceVirtual());
-        editor.putString("imagen", actividades.get(pos).getImagenActividad());
+        editor.putString("imagen", actividades.get(pos).getImagenActividad().toString());
         editor.putString("ponente", actividades.get(pos).getPonenteActividad());
         editor.putInt("idEvento", actividades.get(pos).getIdEvento());
         editor.putInt("numEmpleado", actividades.get(pos).getNumEmpleadoAdministrador());

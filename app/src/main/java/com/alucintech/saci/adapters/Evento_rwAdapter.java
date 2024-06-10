@@ -50,7 +50,7 @@ public class Evento_rwAdapter extends RecyclerView.Adapter<Evento_rwAdapter.MyVi
 
         holder.mtwNombreEvento.setText(eventos.get(position).getNombreEvento());
 
-        byte[] imagenDecodificada = android.util.Base64.decode(eventos.get(position).getImagenEvento(), android.util.Base64.DEFAULT);
+        byte[] imagenDecodificada = eventos.get(position).getImagenEvento();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imagenDecodificada, 0, imagenDecodificada.length);
         holder.imwEvento.setImageBitmap(bitmap);
 
@@ -101,7 +101,7 @@ public class Evento_rwAdapter extends RecyclerView.Adapter<Evento_rwAdapter.MyVi
         editor.putString("descripcionEvento", eventos.get(pos).getDescripcionEvento());
         editor.putString("fechaInicioEvento", eventos.get(pos).getFechaInicioEvento());
         editor.putString("fechaFinEvento", eventos.get(pos).getFechaFinEvento());
-        editor.putString("imagen", eventos.get(pos).getImagenEvento());
+        editor.putString("imagen", eventos.get(pos).getImagenEvento().toString());
         editor.putInt("idEvento", eventos.get(pos).getIdEvento());
 
         editor.commit();
