@@ -10,6 +10,7 @@ public class Carnet {
     String estadoCarnet;
     int claveCarnet;
 
+
     public Carnet(int numFolio, int numeroSellosCarnet, String cicloEscolarCarnet, String fechaCreacionCarnet, int matriculaAlumno, String estadoCarnet, int claveCarnet) {
         this.numFolio = numFolio;
         this.numeroSellosCarnet = numeroSellosCarnet;

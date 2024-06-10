@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/informacionCarnetDrawerLayout"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.InformacionCarnetFragment">
 
@@ -32,14 +33,16 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="409dp"
+            android:layout_width="380dp"
             android:layout_height="500dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.359">
+            app:layout_constraintVertical_bias="0.354">
 
 
             <androidx.cardview.widget.CardView
@@ -72,6 +75,7 @@
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
                         android:layout_margin="8dp"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="2dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,6 +135,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.06"
@@ -144,6 +149,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.05"
@@ -157,6 +163,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.02"
@@ -254,6 +261,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.04"
@@ -267,6 +275,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.053"
@@ -280,6 +289,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.06"
@@ -293,6 +303,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/allerta"
                                 android:text="@string/Informacion"
+                                android:textColor="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.042"
@@ -442,6 +453,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/InfoAlumno"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.084"
@@ -455,6 +467,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/InfoCarnet"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.082"

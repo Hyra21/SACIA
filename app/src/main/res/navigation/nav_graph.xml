@@ -39,7 +39,11 @@
             app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_alumnoFragment_to_consultaEventosFragment"
-            app:destination="@id/consultaEventosFragment" />
+            app:destination="@id/consultaEventosFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/consultaCarnet"
@@ -74,26 +78,18 @@
         android:label="fragment_consulta_evento"
         tools:layout="@layout/fragment_consulta_actividades" >
         <action
-            android:id="@+id/action_consultaActividades_to_alumnoFragment"
-            app:destination="@id/alumnoFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_consultaActividades_to_inicioFragment"
-            app:destination="@id/inicioFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"/>
-        <action
             android:id="@+id/action_consultaActividades_to_informacionActividadFragment"
             app:destination="@id/informacionActividadFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_consultaActividades_to_consultaEventosFragment"
+            app:destination="@id/consultaEventosFragment" />
+        <action
+            android:id="@+id/action_consultaActividades_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
 
     </fragment>
     <fragment
@@ -147,10 +143,18 @@
         tools:layout="@layout/fragment_consulta_evento" >
         <action
             android:id="@+id/action_consultaEventosFragment_to_consultaActividades"
-            app:destination="@id/consultaActividades" />
+            app:destination="@id/consultaActividades"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_consultaEventosFragment_to_alumnoFragment"
-            app:destination="@id/alumnoFragment" />
+            app:destination="@id/alumnoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_consultaEventosFragment_to_inicioFragment"
             app:destination="@id/inicioFragment" />

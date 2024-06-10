@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cwCarnet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="540px"
         android:layout_row="0"
         android:layout_column="0"
         android:layout_columnWeight="1"
@@ -39,7 +39,7 @@
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/btnSello1"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,104 +50,105 @@
                 android:id="@+id/btnSello1"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/btnSello5"
-                app:layout_constraintEnd_toStartOf="@+id/btnSello2"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.059"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.16" />
 
             <Button
                 android:id="@+id/btnSello2"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/btnSello6"
-                app:layout_constraintEnd_toStartOf="@+id/btnSello3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.356"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.16" />
 
             <Button
                 android:id="@+id/btnSello3"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/btnSello7"
-                app:layout_constraintEnd_toStartOf="@+id/btnSello4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.653"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.16" />
 
             <Button
                 android:id="@+id/btnSello4"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
-                app:layout_constraintBottom_toTopOf="@+id/btnSello8"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.125" />
+                app:layout_constraintVertical_bias="0.16" />
 
             <Button
                 android:id="@+id/btnSello5"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnSello6"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.059"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.877" />
 
             <Button
                 android:id="@+id/btnSello6"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnSello7" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.356"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.877" />
 
             <Button
                 android:id="@+id/btnSello7"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnSello8" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.653"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.877" />
 
             <Button
                 android:id="@+id/btnSello8"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
                 android:background="@drawable/imgbt_sellos"
                 android:contentDescription="@string/contexto"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.877" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -108,7 +108,7 @@ public class ConsultaActividadesFragment extends Fragment {
         imgbtRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_consultaActividades_to_alumnoFragment);
+                navController.navigate(R.id.action_consultaActividades_to_consultaEventosFragment);
             }
         });
 

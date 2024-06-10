@@ -50,64 +50,41 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
 
         int pos = position + 1;
         holder.twNumCarnet.setText("Carnet #"+ pos);
+        int numSellos = carnets.get(position).getNumeroSellosCarnet();
 
-        switch(carnets.get(position).getNumeroSellosCarnet()){
-            case 1:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 2:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 3:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 4:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 5:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 6:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 7:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello7.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
-            case 8:
-                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello7.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                holder.btnSello8.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
-                break;
+        if(numSellos != 0){
+            if(numSellos >= 1){
+                holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos >= 2){
+                holder.btnSello2.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos >= 3){
+                holder.btnSello3.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos >= 4){
+                holder.btnSello4.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos >= 5){
+                holder.btnSello5.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos >= 6){
+                holder.btnSello6.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos >= 7){
+                holder.btnSello7.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
+
+            if(numSellos == 8){
+                holder.btnSello8.setBackground(ContextCompat.getDrawable(context, R.drawable.layered_drawable));
+            }
         }
-
-
-        //holder.btnSello1.setBackground(ContextCompat.getDrawable(context, R.drawable.palomita));
 
         if(carnets.get(position).getEstadoCarnet().equals("En Proceso")){
             holder.imageView.setImageResource(R.drawable.enproceso_carnet);
@@ -126,6 +103,7 @@ public class Carnet_rwAdapter extends RecyclerView.Adapter<Carnet_rwAdapter.MyVi
                 navController.navigate(R.id.action_consultaCarnet_to_informacionCarnetFragment);
             }
         });
+
 
         //Aqui tambien iran los botonos
 

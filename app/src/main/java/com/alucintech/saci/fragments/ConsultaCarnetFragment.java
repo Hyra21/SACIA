@@ -52,7 +52,6 @@ public class ConsultaCarnetFragment extends Fragment {
     Connection connection;
     ArrayList<Carnet> carnets = new ArrayList<>();
     private ScanQRHelper scanQRHelper;
-    DecoratedBarcodeView barcodeView;
     int numCarnetSemestre=0, numCarnetCarrera=0, folioActual = 0, claveCarnet=0;
     String matriculaAlumno="", carnetsCompletos="";
     String estadoCarnet="";
@@ -84,7 +83,6 @@ public class ConsultaCarnetFragment extends Fragment {
                 }
             }
             mostrarCarnet();
-            mostrarCarnet2(c);
 
             return null;
         }
@@ -329,28 +327,18 @@ public class ConsultaCarnetFragment extends Fragment {
 
                 }
             }
-            connection.close();
-        } catch (Exception e){
-            Log.d(e.toString(),"falla1");
-        }
-    }
-
-    private void mostrarCarnet2(Carnet c){
-
-        try {
-            connection = connectionClass.CONN();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT sello.cantidad FROM sello inner join tienesello on sello.idSello = tienesello.idSello inner join carnet on tienesello.numFolioCarnet = carnet.numFolio where carnet.matriculaAlumno = "+ matriculaAlumno);
-
+            resultSet = statement.executeQuery("SELECT sello.cantidad FROM sello inner join tienesello on sello.idSello = tienesello.idSello inner join carnet on tienesello.numFolioCarnet = carnet.numFolio where carnet.matriculaAlumno = "+ matriculaAlumno);
             resultSet.next();
             c.setNumeroSellosCarnet(resultSet.getInt(1));
 
             carnets.add(new Carnet(c.getNumFolio(),c.getNumeroSellosCarnet(),c.getCicloEscolarCarnet(),c.getFechaCreacionCarnet(),c.getMatriculaAlumno(),c.getEstadoCarnet(),c.getClaveCarnet()));
             connection.close();
         } catch (Exception e){
-            Log.d(e.toString(),"falla2");
+            Log.d(e.toString(),"falla1");
         }
     }
+
+
 
     private String obtenerFecha(){
         Calendar calendar = Calendar.getInstance();
