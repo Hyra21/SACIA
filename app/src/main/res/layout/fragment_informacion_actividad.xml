@@ -34,14 +34,16 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="409dp"
+            android:layout_width="380dp"
             android:layout_height="510dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42000002">
+            app:layout_constraintVertical_bias="0.416">
 
 
             <androidx.cardview.widget.CardView
@@ -86,11 +88,13 @@
                             style="@style/MyMultiAutoCompleteTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@color/white"
                             android:clickable="true"
                             android:editable="false"
                             android:gravity="top"
                             android:text="MultiAutoCompleteTextView"
                             android:textAlignment="textStart"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             tools:ignore="RtlCompat" />
                     </androidx.cardview.widget.CardView>
@@ -110,18 +114,20 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.98" >
+                        app:layout_constraintVertical_bias="0.98">
 
                         <MultiAutoCompleteTextView
                             android:id="@+id/mtwDescripcionActividad"
                             style="@style/MyMultiAutoCompleteTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@color/white"
                             android:clickable="false"
                             android:editable="false"
                             android:gravity="top"
                             android:text="MultiAutoCompleteTextView"
                             android:textAlignment="textStart"
+                            android:textColor="@color/black"
                             android:textSize="15sp"
                             tools:ignore="RtlCompat" />
                     </androidx.cardview.widget.CardView>
@@ -174,6 +180,7 @@
                                 android:layout_columnWeight="1"
                                 android:layout_gravity="fill"
                                 android:layout_margin="8dp"
+                                android:background="@color/white"
                                 app:cardCornerRadius="7dp"
                                 app:cardElevation="2dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -186,6 +193,7 @@
                                     android:id="@+id/imwActividad"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@color/white"
                                     tools:src="@tools:sample/backgrounds/scenic" />
                             </androidx.cardview.widget.CardView>
 
@@ -207,8 +215,9 @@
                                 android:id="@+id/twPonente"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/Ponente"
                                 android:fontFamily="@font/allerta"
+                                android:text="@string/Ponente"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -235,8 +244,9 @@
                                 android:id="@+id/twEspaciosInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/Espacios"
                                 android:fontFamily="@font/allerta"
+                                android:text="@string/Espacios"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -263,8 +273,9 @@
                                 android:id="@+id/twModalidadInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/Modalidad"
                                 android:fontFamily="@font/allerta"
+                                android:text="@string/Modalidad"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -291,8 +302,9 @@
                                 android:id="@+id/twHorarioInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/HorarioActividad"
                                 android:fontFamily="@font/allerta"
+                                android:text="@string/HorarioActividad"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -305,8 +317,9 @@
                                 android:id="@+id/twFechaInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/FechaActividad"
                                 android:fontFamily="@font/allerta"
+                                android:text="@string/FechaActividad"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -347,8 +360,9 @@
                                 android:id="@+id/twTipoActividadInfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/TipoActividad"
                                 android:fontFamily="@font/allerta"
+                                android:text="@string/TipoActividad"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
