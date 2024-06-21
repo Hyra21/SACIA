@@ -48,6 +48,7 @@ public class InformacionCarnetFragment extends Fragment {
     Connection connection;
     String matriculaAlumno;
     private ScanQRHelper scanQRHelper;
+    String qrContent;
     DecoratedBarcodeView barcodeView;
     MaterialToolbar toolbar;
     DrawerLayout drawerLayout;

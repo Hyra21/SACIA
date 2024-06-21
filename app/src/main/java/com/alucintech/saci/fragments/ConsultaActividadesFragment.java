@@ -40,6 +40,7 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -70,6 +71,14 @@ public class ConsultaActividadesFragment extends Fragment {
         protected View doInBackground(View... views) {
             buscarActividadProgramaEducativo();
             buscarActividades(idsActividad);
+            if(qrContent != null){
+                String idActividad = validarCodigos(qrContent);
+                if(idActividad.compareTo("error") != 0){
+                    String[] errores = validarHorario(idActividad);
+                    System.out.println("ERRORES:"+ errores[0] + errores[1] + errores[2]);
+                    cargarDatosActividad2(errores);
+                }
+            }
             return null;
         }
         //Aquí crearemos la vista de la actividades
@@ -118,6 +127,7 @@ public class ConsultaActividadesFragment extends Fragment {
                 scannerView.setVisibility(View.VISIBLE);
                 final Fragment currentFragment = ConsultaActividadesFragment.this;
                 scanQRHelper.startScan();
+
             }
         });
 
@@ -125,11 +135,11 @@ public class ConsultaActividadesFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 if ("SCAN_RESULT".equals(requestKey)) {
-                    qrContent = result.getString("QR_CONTENT");
+                    qrContent = String.valueOf(result);
                     // Manejar el resultado del escaneo aquí
                     scannerView.setVisibility(View.INVISIBLE);
                     Log.d("Resultado SCAN", String.valueOf(result));
-                    cargarDatosActividad(String.valueOf(result));
+                    new Task().execute();
                 }
             }
         });
@@ -243,7 +253,7 @@ public class ConsultaActividadesFragment extends Fragment {
                     espaciosDisponibles = resultSet.getInt(9);
                     modalidadActividad = resultSet.getString(10);
                     enlaceVirtual = resultSet.getString(11);
-                    imagenActividad = resultSet.getString(12).getBytes();
+                    imagenActividad = resultSet.getBytes(12);
                     ponenteActividad = resultSet.getString(15);
                     idEvento = resultSet.getInt(13);
                     numEmpleadoAdministrador = resultSet.getInt(14);
@@ -274,7 +284,7 @@ public class ConsultaActividadesFragment extends Fragment {
     }
     //Lectura del archivo para obtener las credenciales almacenadas
 
-    private void cargarDatosActividad(String qrContent){
+    private String validarCodigos(String qrContent){
         String qrCode;
         try {
             String flag = "No existe";
@@ -284,6 +294,8 @@ public class ConsultaActividadesFragment extends Fragment {
 
             //Aqui obtenemos el codigo de inicio almacenado, si no existen se guarda "No existe"
             String qrIniciob = preferences.getString("qrInicio", "No existe");
+            String code1 = qrIniciob;
+
             System.out.println("LEÉ EL CODIGO DE INICIO QUE ES: " + qrIniciob);
 
             //Aqui se realiza la validacion de que existen las credenciales
@@ -293,62 +305,73 @@ public class ConsultaActividadesFragment extends Fragment {
                 System.out.println("SE MANDÓ A GUARDARDATOSACTIVIDAD: " + qrIniciob);
             } else {
                 System.out.println("EL CODIGO DE INICIO SÍ EXISTÍA Y ESTE ES EL 2DO CÓDIGO: " + qrCode);
-                //Se decifra el qr de inicio y el de fin
-                String codigo1 = CifradorHelper.descifrar(qrIniciob);
-                System.out.println("EL SE DESCIFRARON LOS CODIGOS Y NOS DIÓ: " + codigo1);
-                String codigo2 = CifradorHelper.descifrar(qrCode.substring(0, qrIniciob.length()));
-                System.out.println("EL SE DESCIFRARON LOS CODIGOS Y NOS DIÓ: " + codigo1 + " Y " + codigo2);
-
-                //Se obtiene el id de la actividad
-                String idActividad = codigo1;
-                System.out.println("EL ID DE LA ACTIVIDAD ES: " + idActividad);
-                int[] errores = validarHorario(idActividad);
-                System.out.println("SE MANDÓ IDACTIVIDAD A VALIDAR LOS ERRORES: " + idActividad);
-                //Valida si los códigos son de la misma actividad, dentro del horario y si lo escaneado pertenece a una actividad
-                if (codigo1.concat("asistio").compareTo(codigo2) == 0 && errores[0] != 1 && errores[1] != 1) {
-
-                    connection = connectionClass.CONN();
-                    Statement statement = connection.createStatement();
-                    //Obtiene la matrícula del alumno
-                    cargarPreferenciasMatricula();
-                    //Obtiene el numero de folio del carnet
-                    ResultSet resultSetFolio = statement.executeQuery("SELECT  numFolio FROM carnet where estadoCarnet = 'en Proceso' AND matriculaAlumno = " + matriculaAlumno);
-                    //Obtiene el id del sello
-                    ResultSet resultSetidSello = statement.executeQuery("SELECT  idSello FROM sello where idActividad = " + idActividad);
-                    //Se inserta el id de sello y el numero de folio en la tabla teiesello para completar el registro
-                    statement.executeQuery("INSERT INTO tienesello (idSello, numFolioCarnet) VALUES " +
-                            "(" + resultSetidSello.getString(0) + "," + resultSetFolio.getString(0) + ")");
-                    connection.close();
-                    borrarDatosActividad();
-                } else {
-                    if (errores[1] == 1) {
-                        System.out.println("Fuera del horario");
-                    } else {
-                        System.out.println("Codigo incorrecto");
-                    }
-                }
+                    return CifradorHelper.descifrar(code1);
             }
         }catch (Exception e){
             Log.d(e.toString(),"falla");
         }
+        return "error";
     }
 
-    public int[] validarHorario(String idActividad){
-        int[] errores = new int[2];
+    private void cargarDatosActividad2(String[] errores){
+        try{
+        if (errores[1] == null && errores[2] == null) {
+
+            connection = connectionClass.CONN();
+            System.out.println(connection.toString());
+            Statement statement = connection.createStatement();
+            System.out.println("SE OBTIENE LA MATRICULA");
+
+            //Obtiene la matrícula del alumno
+            cargarPreferenciasMatricula();
+
+            //Obtiene el numero de folio del carnet
+            ResultSet resultSet = statement.executeQuery("SELECT  numFolio FROM carnet where estadoCarnet = 'en Proceso' AND matriculaAlumno = " + matriculaAlumno);
+            resultSet.next();
+            System.out.println("NUMFOLIO: "+resultSet.getInt(1));
+            int numFolio = resultSet.getInt(1);
+
+            //Obtiene el id del sello
+            System.out.println("SE OBTIENE EL ID DEL SELLO");
+            resultSet = statement.executeQuery("SELECT  idSello FROM sello where idActividad = " + errores[0]);
+            resultSet.next();
+            System.out.println("IDSELLO:" + resultSet.getInt(1));
+            int idSello = resultSet.getInt(1);
+
+            //Se inserta el id de sello y el numero de folio en la tabla teiesello para completar el registro
+            statement.executeUpdate("INSERT INTO tienesello (idSello, numFolioCarnet) VALUES " +
+                    "(" + idSello + "," + numFolio + ")");
+
+
+            connection.close();
+            borrarDatosActividad();
+        } else {
+            if (errores[1].compareTo("1") == 0) {
+                System.out.println("Fuera del horario");
+            } else {
+                System.out.println("Codigo incorrecto");
+            }
+        }
+        }catch (Exception e){
+            Log.d(e.toString(),"falla");
+        }
+    }
+    public String[] validarHorario(String idActividad){
+        String[] errores = new String[3];
+        errores [0] = idActividad;
         try{
         System.out.println("ANTES DE LA CONEXIÓN");
         connection = connectionClass.CONN();
-        System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"+connection.toString());
+        System.out.println(connection.toString());
         System.out.println("DESPUES DE LA CONEXIÓN");
 
         if(connectionClass.CONN() == null){
             Log.e("Connection Error", "CONNECTIONCLASS CONN ESTÁ VACIA.");
         }
 
-
             if (connection == null) {
                 Log.e("Connection Error", "No se pudo establecer la conexión a la base de datos.");
-                errores[0] = 1;
+                errores[1] = "1";
                 return errores;
             }else {
                 System.out.println("CONEXION ESTABLECIDA");
@@ -358,10 +381,11 @@ public class ConsultaActividadesFragment extends Fragment {
             System.out.println("STATEMENT");
 
             ResultSet resultHorario = statement.executeQuery("SELECT  horarioInicioActividad, horarioFinActividad, fechaActividad FROM actividad where idActividad = " + idActividad);
+            resultHorario.next();
             System.out.println("SE OBTIENEN LOS VALORES DE LA BASE DE DATOS SEGÚN: " + idActividad);
 
             if (resultHorario.wasNull()) {
-                errores[0] = 1;
+                errores[2] = "1";
             }
             System.out.println("OBTENER INSTANCIA DE CALENDAR");
 
@@ -372,8 +396,13 @@ public class ConsultaActividadesFragment extends Fragment {
 
             // Obtener la fecha del sistema
             calendar.get(Calendar.DATE);
+            System.out.println(Calendar.DATE);
+
             calendar.get(Calendar.MINUTE);
+            System.out.println(Calendar.MINUTE);
+
             calendar.get(Calendar.HOUR_OF_DAY);
+            System.out.println(Calendar.HOUR_OF_DAY);
 
             calendar2.set(Calendar.HOUR_OF_DAY, resultHorario.getTime(1).getHours());
             calendar2.set(Calendar.MINUTE, resultHorario.getTime(1).getMinutes());
@@ -382,13 +411,13 @@ public class ConsultaActividadesFragment extends Fragment {
             calendar3.set(Calendar.HOUR_OF_DAY, resultHorario.getTime(2).getHours());
             calendar3.set(Calendar.MINUTE, resultHorario.getTime(2).getMinutes());
             calendar3.set(Calendar.DATE, resultHorario.getDate(3).getDate());
-
+            System.out.println("FINAL VALIDAR HORARIO");
             if (calendar.before(calendar2) || calendar.after(calendar3)) {
-                errores[1] = 1;
+                errores[1] = "1";
             }
             connection.close();
         }catch (Exception e){
-            Log.d(e.toString(),"falla");
+            Log.d(e.toString(),"falla3");
         }
         return errores;
     }

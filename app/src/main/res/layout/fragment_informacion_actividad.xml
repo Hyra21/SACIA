@@ -120,7 +120,7 @@
                             android:id="@+id/mtwDescripcionActividad"
                             style="@style/MyMultiAutoCompleteTextViewStyle"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="98dp"
                             android:background="@color/white"
                             android:clickable="false"
                             android:editable="false"
@@ -151,7 +151,7 @@
                         app:layout_constraintVertical_bias="0.42000002">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="347dp"
                             android:layout_height="match_parent">
 
 
@@ -165,37 +165,11 @@
                                 android:visibility="invisible"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.064"
+                                app:layout_constraintHorizontal_bias="0.065"
                                 app:layout_constraintStart_toEndOf="@+id/twModalidadInfo"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.75"
+                                app:layout_constraintVertical_bias="0.43"
                                 app:srcCompat="@drawable/baseline_link_24" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/cardView"
-                                android:layout_width="300dp"
-                                android:layout_height="100dp"
-                                android:layout_row="0"
-                                android:layout_column="0"
-                                android:layout_columnWeight="1"
-                                android:layout_gravity="fill"
-                                android:layout_margin="8dp"
-                                android:background="@color/white"
-                                app:cardCornerRadius="7dp"
-                                app:cardElevation="2dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0">
-
-                                <ImageView
-                                    android:id="@+id/imwActividad"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    tools:src="@tools:sample/backgrounds/scenic" />
-                            </androidx.cardview.widget.CardView>
 
                             <TextView
                                 android:id="@+id/textView26"
@@ -209,7 +183,7 @@
                                 app:layout_constraintHorizontal_bias="0.106"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.95" />
+                                app:layout_constraintVertical_bias="0.665" />
 
                             <TextView
                                 android:id="@+id/twPonente"
@@ -221,10 +195,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintHorizontal_bias="0.02"
                                 app:layout_constraintStart_toEndOf="@+id/textView26"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.95" />
+                                app:layout_constraintVertical_bias="0.662" />
 
                             <TextView
                                 android:id="@+id/textView25"
@@ -238,7 +212,7 @@
                                 app:layout_constraintHorizontal_bias="0.108"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.85" />
+                                app:layout_constraintVertical_bias="0.55" />
 
                             <TextView
                                 android:id="@+id/twEspaciosInfo"
@@ -250,10 +224,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintHorizontal_bias="0.053"
                                 app:layout_constraintStart_toEndOf="@+id/textView25"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.85" />
+                                app:layout_constraintVertical_bias="0.547" />
 
                             <TextView
                                 android:id="@+id/textView24"
@@ -267,7 +241,7 @@
                                 app:layout_constraintHorizontal_bias="0.111"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.75" />
+                                app:layout_constraintVertical_bias="0.426" />
 
                             <TextView
                                 android:id="@+id/twModalidadInfo"
@@ -279,10 +253,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintHorizontal_bias="0.048"
                                 app:layout_constraintStart_toEndOf="@+id/textView24"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.75" />
+                                app:layout_constraintVertical_bias="0.429" />
 
                             <TextView
                                 android:id="@+id/textView23"
@@ -296,7 +270,7 @@
                                 app:layout_constraintHorizontal_bias="0.104"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.65" />
+                                app:layout_constraintVertical_bias="0.311" />
 
                             <TextView
                                 android:id="@+id/twHorarioInfo"
@@ -308,10 +282,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintHorizontal_bias="0.033"
                                 app:layout_constraintStart_toEndOf="@+id/textView23"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.65" />
+                                app:layout_constraintVertical_bias="0.31" />
 
                             <TextView
                                 android:id="@+id/twFechaInfo"
@@ -323,10 +297,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintHorizontal_bias="0.039"
                                 app:layout_constraintStart_toEndOf="@+id/textView2"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.55" />
+                                app:layout_constraintVertical_bias="0.203" />
 
                             <TextView
                                 android:id="@+id/textView2"
@@ -340,7 +314,7 @@
                                 app:layout_constraintHorizontal_bias="0.1"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.55" />
+                                app:layout_constraintVertical_bias="0.203" />
 
                             <TextView
                                 android:id="@+id/textView21"
@@ -351,10 +325,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.1"
+                                app:layout_constraintHorizontal_bias="0.097"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.45" />
+                                app:layout_constraintVertical_bias="0.096" />
 
                             <TextView
                                 android:id="@+id/twTipoActividadInfo"
@@ -366,10 +340,10 @@
                                 android:textSize="15sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.04"
+                                app:layout_constraintHorizontal_bias="0.044"
                                 app:layout_constraintStart_toEndOf="@+id/textView21"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.45" />
+                                app:layout_constraintVertical_bias="0.095" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

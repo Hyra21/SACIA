@@ -56,7 +56,6 @@ public class ScanQRHelper {
                             throw new RuntimeException(e);
                         }
                         Log.e("Empezo scanner", String.valueOf(des));
-                        Toast.makeText(fragment.getActivity(), "Código QR escaneado: " + qrCode, Toast.LENGTH_SHORT).show();
                         Bundle resultData = new Bundle();
                         resultData.putString("QR_CONTENT", qrCode);
                         fragment.getParentFragmentManager().setFragmentResult("SCAN_RESULT", resultData);
